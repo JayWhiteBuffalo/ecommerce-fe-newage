@@ -11,6 +11,7 @@ cursor: pointer;
 display: inline-flex;
 align-items: center;
 text-decoration: none;
+font-weight: 400;
 svg{
     height: 16px;
     margin-right: 5px;
