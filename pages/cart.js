@@ -6,6 +6,7 @@ import styled from "styled-components"
 import { CartContext } from "@/components/CartContext";
 import axios from "axios";
 import Table from "@/components/Table";
+import Input from "@/components/Input";
 
 const ColumnWrapper = styled.div`
     display: grid;
@@ -43,16 +44,29 @@ const QuantityLabel = styled.span`
     padding: 0 10px;
 `;
 
+const CityHolder = styled.div`
+    display:flex;
+    gap: 5px;
+`;
+
 
 export default function CartPage() {
     const {cartProducts, addProduct, removeProduct} = useContext(CartContext);
     const [products, setProducts] = useState([]);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [city, setCity] = useState('');
+    const [postalCode, setpostalCode] = useState('');
+    const [streetAddress, setStreetAddress] = useState('');
+    const [country, setCountry] = useState('');
     useEffect(() => {
         if (cartProducts.length > 0){
             axios.post('/api/cart', {ids:cartProducts})
             .then(response => {
                 setProducts(response.data);
             })
+        } else {
+            setProducts([]);
         }
     }, [cartProducts]);
     function addQuantity(id){
@@ -60,6 +74,11 @@ export default function CartPage() {
     }
     function minusQuantity(id){
         removeProduct(id)
+    }
+    let total = 0;
+    for( const productId of cartProducts) {
+        const price = products.find(p => p._id === productId)?.price || 0;
+        total += price;
     }
     return(
         <>
@@ -101,6 +120,11 @@ export default function CartPage() {
                     </td>
                 </tr>
             ))}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>${total}</td>
+                </tr>
                 </tbody>
             </Table>
             )}
@@ -108,8 +132,15 @@ export default function CartPage() {
             {!!cartProducts?.length && (
             <Box>
                 <h2>Order Information</h2>
-                <input type="text" placeholder="Address"/>
-                <input type ="text" placeholder="Address 20"/>
+
+                <Input type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)}/>
+                <Input type ="text" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)}/>
+                <CityHolder>
+                <Input type ="text" placeholder="City" value={city} onChange={e => setCity(e.target.value)}/>
+                <Input type ="text" placeholder="Postal Code" value={postalCode} onChange={e => setpostalCode(e.target.value)}/>
+                </CityHolder>
+                <Input type ="text" placeholder="Street Address" value={streetAddress} onChange={e => setStreetAddress(e.target.value)}/>
+                <Input type ="text" placeholder="Country" value={country} onChange={e => setCountry(e.target.value)}/>
                 <Button block primary> Continue to payment</Button>
             </Box>
             )}
