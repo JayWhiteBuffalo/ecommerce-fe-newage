@@ -132,16 +132,18 @@ export default function CartPage() {
             {!!cartProducts?.length && (
             <Box>
                 <h2>Order Information</h2>
-
-                <Input type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)}/>
-                <Input type ="text" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)}/>
-                <CityHolder>
-                <Input type ="text" placeholder="City" value={city} onChange={e => setCity(e.target.value)}/>
-                <Input type ="text" placeholder="Postal Code" value={postalCode} onChange={e => setpostalCode(e.target.value)}/>
-                </CityHolder>
-                <Input type ="text" placeholder="Street Address" value={streetAddress} onChange={e => setStreetAddress(e.target.value)}/>
-                <Input type ="text" placeholder="Country" value={country} onChange={e => setCountry(e.target.value)}/>
-                <Button block primary> Continue to payment</Button>
+                <form method="post"action="/api/checkout">
+                    <Input type="text" name="name" placeholder="Name" value={name} onChange={e => setName(e.target.value)}/>
+                    <Input type ="text" name="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)}/>
+                    <CityHolder>
+                    <Input type ="text" name="city" placeholder="City" value={city} onChange={e => setCity(e.target.value)}/>
+                    <Input type ="text" name="postalCode" placeholder="Postal Code" value={postalCode} onChange={e => setpostalCode(e.target.value)}/>
+                    </CityHolder>
+                    <Input type ="text" name="streetAddress" placeholder="Street Address" value={streetAddress} onChange={e => setStreetAddress(e.target.value)}/>
+                    <Input type ="text" name="country" placeholder="Country" value={country} onChange={e => setCountry(e.target.value)}/>
+                    <input type="hidden" name="products" value={cartProducts.join(',')} />
+                    <Button block primary type="submit"> Continue to payment</Button>
+                </form>
             </Box>
             )}
             </ColumnWrapper>
