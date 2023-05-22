@@ -80,6 +80,30 @@ export default function CartPage() {
         const price = products.find(p => p._id === productId)?.price || 0;
         total += price;
     }
+   async function goToPayment(id){
+        const response = await axios.post("/api/checkout" , {
+            name,email,city,country,streetAddress,postalCode, cartProducts,
+        });
+        if (response.data.url){
+            window.location = response.data.url
+        }
+    }
+
+    if (window.location.href.includes('success')) {
+        return (
+            <>
+            <Header />
+            <Center>
+                <ColumnWrapper>
+                    <Box>
+                        <h1>Thank you for your Purchase!</h1>
+                        <p>We will email you with your order details.</p>
+                    </Box>
+                </ColumnWrapper>
+            </Center>
+            </>
+        )
+    }
     return(
         <>
         <Header/>
@@ -132,7 +156,6 @@ export default function CartPage() {
             {!!cartProducts?.length && (
             <Box>
                 <h2>Order Information</h2>
-                <form method="post"action="/api/checkout">
                     <Input type="text" name="name" placeholder="Name" value={name} onChange={e => setName(e.target.value)}/>
                     <Input type ="text" name="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)}/>
                     <CityHolder>
@@ -142,8 +165,7 @@ export default function CartPage() {
                     <Input type ="text" name="streetAddress" placeholder="Street Address" value={streetAddress} onChange={e => setStreetAddress(e.target.value)}/>
                     <Input type ="text" name="country" placeholder="Country" value={country} onChange={e => setCountry(e.target.value)}/>
                     <input type="hidden" name="products" value={cartProducts.join(',')} />
-                    <Button block primary type="submit"> Continue to payment</Button>
-                </form>
+                    <Button block primary onClick={goToPayment}> Continue to payment</Button>
             </Box>
             )}
             </ColumnWrapper>

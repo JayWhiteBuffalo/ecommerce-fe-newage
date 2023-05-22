@@ -9,11 +9,11 @@ export default async function hander(req,res){
         return;
     }
 
-    const {name,email,city,postalCode,streetAddress,country,products} = req.body;
+    const {name,email,city,postalCode,streetAddress,country,cartProducts} = req.body;
 
     await mongooseConnect();
 
-    const productsIds = products.split(',');
+    const productsIds = cartProducts;
     const uniqueIds = [...new Set(productsIds)];
     const productsInfo = await Product.find({_id:uniqueIds});
 
