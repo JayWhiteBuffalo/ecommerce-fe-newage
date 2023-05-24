@@ -51,7 +51,7 @@ const CityHolder = styled.div`
 
 
 export default function CartPage() {
-    const {cartProducts, addProduct, removeProduct} = useContext(CartContext);
+    const {cartProducts, addProduct, removeProduct,clearCart} = useContext(CartContext);
     const [products, setProducts] = useState([]);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -59,6 +59,7 @@ export default function CartPage() {
     const [postalCode, setpostalCode] = useState('');
     const [streetAddress, setStreetAddress] = useState('');
     const [country, setCountry] = useState('');
+    const [isSuccess, setIsSuccess] = useState(false);
     useEffect(() => {
         if (cartProducts.length > 0){
             axios.post('/api/cart', {ids:cartProducts})
@@ -69,27 +70,35 @@ export default function CartPage() {
             setProducts([]);
         }
     }, [cartProducts]);
+    useEffect(() => {
+        if(typeof window === 'undefined') {
+            return
+        }
+        if (window?.location.href.includes('success')){
+            setIsSuccess(true);
+            clearCart();
+        }
+    }, []);
     function addQuantity(id){
         addProduct(id);
     }
     function minusQuantity(id){
         removeProduct(id)
     }
+   async function goToPayment(){
+        const response = await axios.post("/api/checkout" , {
+            name,email,city,country,streetAddress,postalCode, cartProducts,
+        });
+        if (response.data.url){
+            window.location = response.data.url;
+        }
+    }
     let total = 0;
     for( const productId of cartProducts) {
         const price = products.find(p => p._id === productId)?.price || 0;
         total += price;
     }
-   async function goToPayment(id){
-        const response = await axios.post("/api/checkout" , {
-            name,email,city,country,streetAddress,postalCode, cartProducts,
-        });
-        if (response.data.url){
-            window.location = response.data.url
-        }
-    }
-
-    if (window.location.href.includes('success')) {
+    if (isSuccess) {
         return (
             <>
             <Header />
@@ -104,6 +113,7 @@ export default function CartPage() {
             </>
         )
     }
+
     return(
         <>
         <Header/>
