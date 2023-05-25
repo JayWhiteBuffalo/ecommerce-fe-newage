@@ -5,10 +5,8 @@ import { mongooseConnect } from "@/lib/mongoose"
 import { Product } from "@/modals/Product"
 import mongoose from "mongoose"
 import styled from "styled-components"
+import Title from "@/components/Title"
 
-const Title = styled.div`
-    font-size: 1.5em;
-`
 export default function ProductsPage({products}) {
     console.log({products});
     return(
