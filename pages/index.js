@@ -4,11 +4,13 @@ import NewProducts from "@/components/NewProducts";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/modals/Product";
 import Center from "@/components/Center";
+import Banner from "@/components/Banner";
 
 export default function HomePage({featuredProduct, newProducts}) {
   return(
     <>
     <Header/>
+    <Banner/>
     <Center>
     <Featured product={featuredProduct}/>
     <NewProducts products={newProducts} />
