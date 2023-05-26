@@ -7,24 +7,30 @@ import banner4 from "../public/images/banner4.jpg"
 import banner5 from "../public/images/banner5.jpg"
 import carouselBtn from "../public/images/back.png"
 import { useState } from "react"
+import NextImage from 'next/image'
+
 
 
 const heroItems = [
     {
         image: banner0,
         title: 'Crystal Collection',
+        ahref: '',
     },
     {
         image: banner1,
         title: 'Healing Collection',
+        ahref: '',
     },
     {
         image: banner3,
         title: 'Meditation Collection',
+        ahref: '',
     },
     {
         image: banner4,
-        title: 'Sacred Space Collection',
+        title: 'Sacred Collection',
+        ahref: '',
     },
 ];
 
@@ -37,7 +43,17 @@ const BannerWrap = styled.div`
 const BannerImage = styled.img`
     width:100%;
     height: 40vh;
-    opacity: 90%;
+    opacity: 80%;
+    animation: fadeIn 3s;
+    animation: fadeOut 3s;
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+    @keyframes fadeIn {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+    }
     `;
 const BannerInnerCont = styled.div`
     position: absolute;
@@ -112,6 +128,7 @@ const BannerTextBox = styled.div`
 export default function Banner(){
 
     const [activeSlide, setActiveSlide] = useState(0);
+    const [currentImage, setCurrentImage] = useState(0)
 
     function nextSlide() {
         if(activeSlide < heroItems.length -1){
@@ -129,10 +146,12 @@ export default function Banner(){
         }
     };
 
+    // setInterval(nextSlide, 5000);
+
     return(
         <>
         <BannerWrap>
-            <BannerImage src={heroItems[activeSlide].image.src} alt="/"/>
+            <BannerImage src={heroItems[activeSlide].image.src} placeholder='blur' priority alt="/"/>
             <BannerInnerCont>
                 <BannerTextBox>
                     <span>{heroItems[activeSlide].title}</span>
