@@ -62,9 +62,12 @@ export default function ProductsGrid(props) {
 
     return(
         <StyledProductsGrid>
-                {filteredProducts?.length > 0 && filteredProducts.map((product, index) => (
+                {filteredProducts?.length > 0 ? filteredProducts.map((product, index) => (
                     <ProductBox key={index} {...product}/>
-                ))}
+                )) : (
+                    props.products.map((product, index) => (
+                    <ProductBox key={index} {...product}/>
+                )))}
         </StyledProductsGrid>
     )
 };
