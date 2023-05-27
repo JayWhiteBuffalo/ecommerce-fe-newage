@@ -6,15 +6,35 @@ import { Product } from "@/modals/Product"
 import mongoose from "mongoose"
 import styled from "styled-components"
 import Title from "@/components/Title"
+import SortBox from "@/components/SortBox"
+import SeachBox from "@/components/SearchBox"
+import { useState } from "react"
+
+
+const SortCont = styled.div`
+display: flex;
+justify-content: end;
+gap: 2rem;
+`
 
 export default function ProductsPage({products}) {
-    console.log({products});
+
+    // const [filteredProducts, setFilteredProducts] = useState(products.products);
+    const [activeSort, setActiveSort] = useState('highest');
+    const [activeType, setActiveType] = useState('price');
+    
+
+
     return(
         <>
         <Header />
             <Center>
                 <Title> All Products</Title>
-                <ProductsGrid products={products.products}/>
+                <SortCont>
+                    <SortBox setActiveType={setActiveType} setActiveSort={setActiveSort}/>
+                    <SeachBox/>
+                </SortCont>
+                <ProductsGrid products={products.products} activeSort={activeSort} activeType={activeType}/>
             </Center>
         </>
     )

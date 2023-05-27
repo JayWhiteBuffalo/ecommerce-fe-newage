@@ -6,6 +6,7 @@ const Title = styled.h2`
     font-size: 2rem;
     margin: 30px 0 20px;
     font-weight: normal;
+    border-bottom: 2px solid purple;
 `;
 
 export default function NewProducts ({products}) {
