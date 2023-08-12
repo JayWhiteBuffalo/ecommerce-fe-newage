@@ -36,13 +36,13 @@ const heroItems = [
 
 const BannerWrap = styled.div`
     width: 100%;
-    height: 40vh;
+    height: 55vh;
     position:relative;
     background-color: black;
     `;
 const BannerImage = styled.img`
     width:100%;
-    height: 40vh;
+    height: 55vh;
     opacity: 80%;
     animation: fadeIn 3s;
     animation: fadeOut 3s;
@@ -95,7 +95,7 @@ const BannerTextBox = styled.div`
     const CaroselButtonWrap = styled.div`
         position: absolute;
         display: flex;
-        height: 40vh;
+        height: 55vh;
         width: 5vw;
         top: 0;
         bottom:0;

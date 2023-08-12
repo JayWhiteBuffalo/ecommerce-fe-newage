@@ -14,10 +14,14 @@ export default function ProductsGrid(props) {
     const [filteredProducts, setFilteredProducts] = useState(props.products);
 
     useEffect(() => {
-        let list = sortItems();
-        setFilteredProducts(() => setFilteredProducts(list));
-        console.log("useEffect Fired")
-    },[props.activeSort, props.activeType, filteredProducts]);
+        let sortedList = sortItems();
+        // let searchResults = sortedList.includes(props.searchParams);
+        // let result = sortedList.filter(items =>
+        //     items
+        // )
+        setFilteredProducts(() => setFilteredProducts(sortedList));
+    },[props.activeSort, props.activeType, filteredProducts, props.searchParams]);
+
 
     function sortItems(){
         if(props.activeSort === 'highest'){

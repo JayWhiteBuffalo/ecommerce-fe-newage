@@ -8,6 +8,7 @@ import { CartContext } from "@/components/CartContext";
 import { useContext } from "react";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/modals/Product";
+import { Category } from "@/modals/Category";
 import ProductImages from "@/components/ProductImages";
 import CartIcon from "@/components/icons/CartIcon";
 
@@ -28,11 +29,11 @@ const Price = styled.span`
     font-size: 1.75rem;
     `;
 
-export default function ProductPage({product}) {
+export default function ProductPage({product, categories}) {
     const {addProduct} = useContext(CartContext);
     return(
         <>
-        <Header/>
+        <Header categories={categories}/>
         <Center>
             <ColWrapper>
                 <Box>
@@ -60,9 +61,11 @@ export async function getServerSideProps(context) {
     await mongooseConnect();
     const {id} = context.query;
     const product = await Product.findById(id);
+    const categories = await Category.find({}, null, {sort: {'_id':-1}});
     return {
         props: {
             product:JSON.parse(JSON.stringify(product)),
+            categories: JSON.parse(JSON.stringify(categories))
         }
     }
 }

@@ -1,11 +1,10 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import Center from "./Center";
 import ProductsGrid from "./ProductGrid";
 
 const TitleCont = styled.div`
     width: 100%;
     height: 50px;
-    margin: 50px 0;
     text-align: center;
     font-size: 28px;
     position: relative;
@@ -22,7 +21,7 @@ const TitleCont = styled.div`
     }
 `;
 
-const Title = styled.h2`
+const TitleStyle = css`
     background-color: #f0f0f0;
     width: auto;
     display: inline-block;
@@ -34,15 +33,24 @@ const Title = styled.h2`
     font-weight: lighter;
     margin: 0;
     border-radius: 25%;
+    ${props => props.bgColor && css `
+    background-color: #ccc;
+    `}
 `
+const StyledTitle = styled.h3`
+    ${TitleStyle}
+`;
 
-export default function NewProducts ({products}) {
+// background-color: #ccc;
+
+export default function SectionTitle ({children, ...rest}) {
     return (
+
         <Center>
-            <TitleCont>
-                <Title>New Arrivals</Title>
-            </TitleCont>
-        <ProductsGrid products={products}/>
+        <TitleCont>
+            <StyledTitle {...rest}>{children}</StyledTitle>
+        </TitleCont>
         </Center>
-    );
-}
+
+    )
+};

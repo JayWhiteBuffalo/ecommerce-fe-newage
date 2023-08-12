@@ -6,9 +6,11 @@ import ButtonLink from "./ButtonLink";
 import CartIcon from "./icons/CartIcon";
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
+import SectionTitle from "./SectionTitle";
 
 const Bg = styled.div`
-background-color: #EEE;
+background-color: #ccc;
+height: auto;
 padding: 50px 0;
 `
 const Wrapper = styled.div`
@@ -23,6 +25,7 @@ const Wrapper = styled.div`
 const Column = styled.div`
     display: flex;
     aligned-items: center;
+    justify-content: center;
 `;
 const ButtonsWrapper = styled.div`
 display: flex;
@@ -33,11 +36,14 @@ margin-top:25px;
 export default function Featured({product}) {
     const {addProduct} = useContext(CartContext);
 
+
     function addFeaturedtoCart(){
         addProduct(product._id);
     }
 
     return(
+        <>
+        <SectionTitle>Featured</SectionTitle>
         <Bg>
             <Center>
                 <Wrapper>
@@ -59,10 +65,11 @@ export default function Featured({product}) {
                         </div>
                     </Column>
                     <Column>
-                        <img src={product.images} alt=""/>
+                        <img src={product.images} width={300} alt=""/>
                     </Column>
                 </Wrapper>
             </Center>
         </Bg>
+        </>
     )
 }

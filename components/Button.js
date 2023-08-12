@@ -39,6 +39,24 @@ ${props => props.primary && props.outline && css`
     border: 1px solid ${primary};
     color:${primary};
     `}
+${props => props.card &&  css`
+    width: 100%;
+    position: relative;
+    background-color: transparent;
+    border: 1px solid black;
+    color:black;
+    border-radius: 0;
+    padding: 1rem 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    letter-spacing: .1rem;
+    &:hover{
+        background-color: black;
+        color: white;
+    }
+    `}
 ${props => props.size === 'l' && css`
     font-size: 1.2rem;
     padding: 18px 20px;

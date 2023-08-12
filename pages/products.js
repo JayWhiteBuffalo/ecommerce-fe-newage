@@ -3,6 +3,7 @@ import Header from "@/components/Header"
 import ProductsGrid from "@/components/ProductGrid"
 import { mongooseConnect } from "@/lib/mongoose"
 import { Product } from "@/modals/Product"
+import { Category } from "@/modals/Category"
 import mongoose from "mongoose"
 import styled from "styled-components"
 import Title from "@/components/Title"
@@ -17,24 +18,25 @@ justify-content: end;
 gap: 2rem;
 `
 
-export default function ProductsPage({products}) {
+export default function ProductsPage({products, categories}) {
 
     // const [filteredProducts, setFilteredProducts] = useState(products.products);
     const [activeSort, setActiveSort] = useState('highest');
     const [activeType, setActiveType] = useState('price');
+    const [searchParams, setSearchParams] = useState('');
     
 
 
     return(
         <>
-        <Header />
+        <Header categories={categories} />
             <Center>
                 <Title> All Products</Title>
                 <SortCont>
                     <SortBox setActiveType={setActiveType} setActiveSort={setActiveSort}/>
-                    <SeachBox/>
+                    <SeachBox setSearchParams={setSearchParams} searchParams={searchParams}/>
                 </SortCont>
-                <ProductsGrid products={products.products} activeSort={activeSort} activeType={activeType}/>
+                <ProductsGrid products={products.products} activeSort={activeSort} activeType={activeType} searchParams={searchParams}/>
             </Center>
         </>
     )
@@ -43,11 +45,13 @@ export default function ProductsPage({products}) {
 export async function getServerSideProps() {
     await mongooseConnect();
     const products= await Product.find({}, null, {sort:{'_id':-1}});
+    const categories = await Category.find({}, null, {sort: {'_id':-1}});
     return {
         props:{
             products:{
-                products:JSON.parse(JSON.stringify(products))
-            }
+                products:JSON.parse(JSON.stringify(products)),
+            },
+            categories: JSON.parse(JSON.stringify(categories))
         }
     };
 }
