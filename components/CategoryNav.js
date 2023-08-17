@@ -14,9 +14,7 @@ const LinksCont = styled.div`
     
 `
 export default function CategoryNav(props) {
-console.log(props)
-console.log(props.categories[0].parent)
-console.log(props.categories[12].parent)
+
 
     return(
         <LinksCont>

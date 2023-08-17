@@ -10,6 +10,7 @@ import Banner from "@/components/Banner";
 import NewsLetter from "@/components/Newsletter";
 import CategoryMenu from "@/components/CategoryMenu";
 import CategorySection from "@/components/CategorySection";
+import AboveBanner from "@/components/AboveBanner";
 
 export default function HomePage({featuredProduct, newProducts, categories}) {
 

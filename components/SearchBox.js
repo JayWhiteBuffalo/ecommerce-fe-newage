@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect} from "react"
 import styled from "styled-components"
+import loupe from "../public/images/loupe.png"
 
 
 export default function SeachBox(props) {
@@ -7,9 +8,36 @@ export default function SeachBox(props) {
     const InputBox = styled.input`
     height: 30px;
     width: 15vw;
-    padding: 8px;
-    border-radius:15px;
+    padding: 0px 10px;
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    margin-top: .15rem;
+    :focus {
+        outline:none;
+    }
 `;
+
+const IconCont = styled.button`
+display: flex;
+position: relative;
+justify-content: center;
+align-items: center;
+padding: .5rem;
+border: none;
+width: 40px;
+cursor: pointer;
+background-color: transparent;
+img{
+    position: relative;
+    width: 100%;
+}
+`;
+
+const SearchCont = styled.div`
+background-color: #ccc3;
+border-radius: 5px;
+`
 
     const searchValue = useRef("")
 
@@ -24,8 +52,11 @@ export default function SeachBox(props) {
     
 
     return(
-        <>
+        <SearchCont>
         <InputBox onChange={(e)=>handleChange(e)} type="text" placeholder="Search"/>
-        </>
+        <IconCont>
+        <img src={loupe.src}/>
+        </IconCont>
+        </SearchCont>
     )
 }

@@ -7,20 +7,22 @@ import healinghands from "../public/images/healinghands.webp"
 const CategoryBtn = styled.button`
     display: flex;
     flex-direction: column;
-    flex: 1 0 33%;
+    flex: 1 0 22%;
     border: none;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     position: relative;
     img{
-        width: 100%;
-        height: 40vh;
+        width: 90%;
+        height: 50vh;
         border-radius: 5%;
     }
 `
 
 const CatTag = styled.div`
+    display: flex;
+    justify-content: center;
     position: relative;
     background-color: white;
     padding: 15px 20px;
@@ -34,7 +36,9 @@ const CatTag = styled.div`
 
 const TagCont = styled.div`
     position: absolute;
-    width: 25%;
+    display: flex;
+    justify-content: center;
+    width: 40%;
     height: auto;
     bottom: 10%;
 `
@@ -44,7 +48,7 @@ const CategorySection = styled.div`
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: .5rem;
+    gap: 0rem;
     justify-content: center;
     align-items: center;
     padding: 2rem 0rem;

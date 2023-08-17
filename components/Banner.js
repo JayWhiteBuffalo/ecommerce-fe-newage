@@ -8,6 +8,8 @@ import banner5 from "../public/images/banner5.jpg"
 import carouselBtn from "../public/images/back.png"
 import { useState } from "react"
 import NextImage from 'next/image'
+import BelowBanner from "./BelowBanner"
+import AboveBanner from "./AboveBanner"
 
 
 
@@ -36,13 +38,13 @@ const heroItems = [
 
 const BannerWrap = styled.div`
     width: 100%;
-    height: 55vh;
+    height: 65vh;
     position:relative;
     background-color: black;
     `;
 const BannerImage = styled.img`
     width:100%;
-    height: 55vh;
+    height: 65vh;
     opacity: 80%;
     animation: fadeIn 3s;
     animation: fadeOut 3s;
@@ -169,6 +171,7 @@ export default function Banner(){
                         <img src={carouselBtn.src} alt=""/>
                     </CarouselButton>
                 </CaroselButtonWrap>
+                <BelowBanner/>
         </BannerWrap>
         </>
     )

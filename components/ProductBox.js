@@ -75,7 +75,7 @@ const Traits = styled.div`
 export default function ProductBox({_id, title, description, price, images, properties, ...rest}) {
     const {addProduct} = useContext(CartContext);
     const url = '/product/' + _id;
-    console.log(properties)
+    // console.log(properties)
     return(
     <ProductWrapper>
         <Box href={url}>
