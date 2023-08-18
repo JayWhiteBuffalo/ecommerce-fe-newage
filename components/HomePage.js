@@ -7,6 +7,7 @@ import NewProducts from "./NewProducts";
 import CategoryMenu from "./CategoryMenu";
 import ad from "../public/images/plantbannerad.jpg"
 import BelowBanner from "./BelowBanner";
+import HotDeal from "./HotDeal";
 
 const CatMenu = styled.aside`
 display: flex;
@@ -16,13 +17,18 @@ const HeroCont = styled.section`
     position: relative;
     display:flex;
     padding: 0rem 1rem;
-    gap: 1.5rem;
+    gap: 1rem;
 `;
 
 const BannerWrap = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+`;
+
+const ProductSecWrap = styled.div`
+    width: 100%;
+    display: flex;
 `
 export default function HomePage ({featuredProduct, newProducts, categories}) {
 
@@ -38,9 +44,10 @@ export default function HomePage ({featuredProduct, newProducts, categories}) {
         </HeroCont>
         <BelowBanner/>
         {/* <Featured product={featuredProduct}/> */}
-        <Center>
-        <NewProducts products={newProducts} />
-        </Center>
+            <HeroCont>
+            <HotDeal product={featuredProduct}/>
+            <NewProducts products={newProducts} />
+            </HeroCont>
         </>
     )
 }

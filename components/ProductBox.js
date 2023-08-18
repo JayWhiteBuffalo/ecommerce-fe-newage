@@ -4,13 +4,13 @@ import CartIcon from "./icons/CartIcon";
 import Link from "next/link";
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
+import SaleTag from "./SaleTag";
 
 const ProductWrapper = styled.div`
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     &:hover {
         
         img {
@@ -19,8 +19,9 @@ const ProductWrapper = styled.div`
     }
 `;
 const Box = styled(Link)`
-    background-color: #eee;
-    padding: 20px;
+    position:relative;
+    background-color: white;
+    padding: 30px;
     height: 15vh;
     text-align: center;
     display: flex;
@@ -72,13 +73,14 @@ const Traits = styled.div`
     font-size: .75rem;
 `
 
-export default function ProductBox({_id, title, description, price, images, properties, ...rest}) {
+export default function ProductBox({_id, title, description, price, images, properties,discount, ...rest}) {
     const {addProduct} = useContext(CartContext);
     const url = '/product/' + _id;
     // console.log(properties)
     return(
     <ProductWrapper>
         <Box href={url}>
+        {discount? (<SaleTag/>) : (null)}
             <div>
             <img src={images[0]} alt =''/>
             </div>

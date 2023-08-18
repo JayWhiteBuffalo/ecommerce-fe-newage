@@ -9,6 +9,7 @@ grid-template-columns: 1fr 3fr;
 border: 1px solid #ccc;
 border-radius: 5%;
 gap: .75rem;
+background-color: white;
 `
 const IconCont = styled.div`
 display: flex;

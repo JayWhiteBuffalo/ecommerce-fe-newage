@@ -3,31 +3,45 @@ import ad1 from "../public/images/plantbannerad.jpg"
 import ad2 from "../public/images/plantbannerad2.jpg"
 import Center from "./Center";
 
-const Cont = styled.section`
+const SectionWrap = styled.section`
+    position: relative;
+    display:flex;
+    padding: 0rem 1rem;
+    gap: 1.5rem;
+    
+`
+const Cont = styled.div`
     width: 100%;
     height: auto;
     background-color: #fff;
     display: flex;
-    flex-direction: column;
-    position: relative;
-    padding: 0rem 2rem;
-    justify-content: center;
-    align-items: center;
+    gap: 1rem;
+    justify-content: space-evenly;
+    margin: 1rem 0rem;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 `;
 
-const TopBar = styled.div`
-    diplay: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
+
+const Ad1 = styled.div`
     width: 100%;
-    max-height: 40vh;
-    background-color: aqua;
-    position: relative;
-    div{
-        display: inline-block;
-    }
+    height: 200px;
+    background-image: url(${ad1.src});
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 1rem;
+    background-position: center;
+`;
+
+const Ad2 = styled.div`
+    display: flex;
+    width: 100%;
+    height: 200px;
+    background-image: url(${ad2.src});
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 1rem;
+    background-position: center;
 `
 
 
@@ -35,18 +49,13 @@ export default function BelowBanner () {
 
     return(
         <>
-            
+            <SectionWrap>
             <Cont>
-                <TopBar>
-                    <div>
-                    <img src={ad1.src}/>
-                    </div>
-                    <div>
-                    <img src={ad2.src}/>
-                    </div>
-                </TopBar>
+                <Ad1/>
+                <Ad2/>
             </Cont>   
-              
+            </SectionWrap>
+         
         </>
 
 

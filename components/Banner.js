@@ -41,7 +41,7 @@ const BannerWrap = styled.div`
     height: auto;
     max-height: 60vh;
     position:relative;
-    background-color: black;
+    background-color: gray;
     `;
 const BannerImage = styled.img`
     width:100%;

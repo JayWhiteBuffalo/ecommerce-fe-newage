@@ -1,11 +1,12 @@
 import Link from "next/link";
 import styled from "styled-components";
 import icon from "../public/images/return-box.png"
+import { secondary } from "@/lib/colors";
 
 const SectionCont = styled.section`
     width: 350px;
     height:auto;
-    background-color:gray;
+    background-color:whitesmoke;
     padding: 0px;
     display: flex;
     flex-direction: column;
@@ -13,7 +14,7 @@ const SectionCont = styled.section`
 `
 
 const TitleCont = styled.header`
-    background-color: aqua;
+    background-color: ${secondary};
     width: 100%;
     display: flex;
 `;
@@ -21,6 +22,7 @@ const Title = styled.h1`
     letter-spacing: 1.5px;
     padding: 0rem 1.5rem;
     font-size: 1rem;
+    color: white;
 `;
 const CatCont = styled.ul`
     list-style:none;
@@ -64,7 +66,7 @@ color: black;
 position: relative;
 padding: .75rem 0rem; 
 h3{
-    color:white;
+    color:gray;
     margin:0px;
 
 }
