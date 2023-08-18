@@ -2,14 +2,17 @@ import styled from "styled-components";
 import { CartContext } from "./CartContext";
 import CartIcon from "./icons/CartIcon";
 import { useContext } from "react";
+import Link from "next/link";
 
-const Cont = styled.div`
+const CartCont = styled(Link)`
 width: 200px;
 height 50px;
 display: grid;
 grid-template-columns: 1fr 3fr;
 border-radius: 5%;
 gap: .75rem;
+text-decoration: none;
+color: black;
 `
 const IconCont = styled.div`
 display: flex;
@@ -46,7 +49,7 @@ export default function CartNav () {
 
     return (
         <>
-        <Cont>
+        <CartCont href={'/cart'}>
             <IconCont>
                 <CartIcon/>
             </IconCont>
@@ -54,7 +57,7 @@ export default function CartNav () {
                 <ValueText>SHOPPING CART</ValueText>
                 <span>({cartProducts.length}) Items - $Price</span>
             </TextCont>
-        </Cont>
+        </CartCont>
         </>
     )
 }

@@ -1,4 +1,7 @@
 import styled from "styled-components"
+import ad1 from "../public/images/plantbannerad.jpg"
+import ad2 from "../public/images/plantbannerad2.jpg"
+import Center from "./Center";
 
 const Cont = styled.section`
     width: 100%;
@@ -6,16 +9,25 @@ const Cont = styled.section`
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    position: absolute;
-    bottom: 0%;
-    opacity: 60%;
+    position: relative;
+    padding: 0rem 2rem;
+    justify-content: center;
+    align-items: center;
 `;
 
 const TopBar = styled.div`
+    diplay: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
     width: 100%;
-    height: auto;
+    max-height: 40vh;
     background-color: aqua;
     position: relative;
+    div{
+        display: inline-block;
+    }
 `
 
 
@@ -23,11 +35,18 @@ export default function BelowBanner () {
 
     return(
         <>
+            
             <Cont>
                 <TopBar>
-                    <h1>Div1</h1>
+                    <div>
+                    <img src={ad1.src}/>
+                    </div>
+                    <div>
+                    <img src={ad2.src}/>
+                    </div>
                 </TopBar>
-            </Cont>     
+            </Cont>   
+              
         </>
 
 

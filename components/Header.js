@@ -1,10 +1,5 @@
 import Link from "next/link";
 import styled from "styled-components";
-import Center from "./Center";
-import { useContext } from "react";
-import { CartContext } from "./CartContext";
-import CartIcon from "./icons/CartIcon";
-import CategoryNav from "./CategoryNav";
 import Nav from "./Nav";
 import ValueCard from "./ValueCard";
 import truck from "../public/images/truck.png"
@@ -38,7 +33,7 @@ const Wrapper = styled.div`
 ;
  const ValueCardCont = styled.div`
     display: grid;
-    grid-template-columns: 1fr .5fr .5fr .5fr .75fr;
+    grid-template-columns: 1fr .3fr .3fr .3fr 1fr;
     gap: 2rem;
  `
 
@@ -50,9 +45,7 @@ const Wrapper = styled.div`
 
 
 export default function Header({categories}){
-    const {cartProducts} = useContext(CartContext);
-    console.log(cartProducts);
-    console.log(CartContext);
+
     return (
         <StyledHeader>
       
@@ -64,7 +57,6 @@ export default function Header({categories}){
                     <CartWrap>
                     <CartNav/>
                     </CartWrap>
-                    {/* <Link href={'/cart'}><CartIcon/> ({cartProducts.length})</Link> */}
                 </ValueCardCont>
                 <Wrapper>
             <Nav/>

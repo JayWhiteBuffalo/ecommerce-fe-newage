@@ -38,13 +38,14 @@ const heroItems = [
 
 const BannerWrap = styled.div`
     width: 100%;
-    height: 65vh;
+    height: auto;
+    max-height: 60vh;
     position:relative;
     background-color: black;
     `;
 const BannerImage = styled.img`
     width:100%;
-    height: 65vh;
+    height: 60vh;
     opacity: 80%;
     animation: fadeIn 3s;
     animation: fadeOut 3s;
@@ -171,7 +172,6 @@ export default function Banner(){
                         <img src={carouselBtn.src} alt=""/>
                     </CarouselButton>
                 </CaroselButtonWrap>
-                <BelowBanner/>
         </BannerWrap>
         </>
     )
