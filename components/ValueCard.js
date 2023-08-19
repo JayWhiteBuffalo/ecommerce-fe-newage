@@ -10,6 +10,7 @@ border: 1px solid #ccc;
 border-radius: 5%;
 gap: .75rem;
 background-color: white;
+margin-top: .75rem;
 `
 const IconCont = styled.div`
 display: flex;

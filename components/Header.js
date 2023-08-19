@@ -11,18 +11,20 @@ import { secondary } from "@/lib/colors";
 
 const StyledHeader = styled.header`
 background-color: white;
+
 padding-top: .5rem;
 width: 100%;
 height:fit-content;
 
 `;
 const Logo =styled(Link)`
-color:#000;
-font-weight: 900;
-letter-spacing: .175rem;
-text-decoration:none;
+width: 300px;
+height: 70px;
 display: flex;
-margin: 0px 20px;
+background-image:url("https://www.zarla.com/images/zarla-crystalized-1x1-2400x2400-20210609-mhx98xwt8qyg89dy9vck.png?crop=1:1,smart&width=250&dpr=2");
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
 `
 ;
 const Wrapper = styled.div`
@@ -52,7 +54,7 @@ export default function Header({categories}){
         <StyledHeader>
       
                 <ValueCardCont>
-                    <Logo href="\">CompSci Crystals</Logo>
+                    <Logo href="\"></Logo>
                     <ValueCard icon={truck.src}title={"FREE SHIPPING"} subtext={"On orders over $100.00"}/>
                     <ValueCard icon={box.src}title={"FREE RETURN"} subtext={"Free 30 day return policy"}/>
                     <ValueCard icon={hand.src}title={"MEMBER DISCOUNT"} subtext={"Free to register"}/>

@@ -15,6 +15,7 @@ border-radius: 5%;
 gap: .75rem;
 text-decoration: none;
 color: black;
+margin-top: .75rem;
 `
 const IconCont = styled.div`
 display: flex;
