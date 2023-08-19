@@ -18,6 +18,7 @@ const HeroCont = styled.section`
     display:flex;
     padding: 0rem 1rem;
     gap: 1rem;
+    margin-top: 1rem;
 `;
 
 const BannerWrap = styled.div`

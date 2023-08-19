@@ -37,6 +37,7 @@ img{
 const SearchCont = styled.div`
 background-color: #ccc3;
 border-radius: 5px;
+height:20px;
 `
 
     const searchValue = useRef("")

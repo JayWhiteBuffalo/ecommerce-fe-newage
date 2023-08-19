@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { CartContext } from "./CartContext";
 import CartIcon from "./icons/CartIcon";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
+import axios from "axios";
 import Link from "next/link";
+import { format_price } from "@/utils/helpers";
 
 const CartCont = styled(Link)`
 width: 200px;
@@ -45,7 +47,27 @@ font-size: .75rem;
 
 
 export default function CartNav () {
+    
     const {cartProducts} = useContext(CartContext);
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        if (cartProducts.length > 0){
+            axios.post('/api/cart', {ids:cartProducts})
+            .then(response => {
+                setProducts(response.data);
+            })
+        } else {
+            setProducts([]);
+        }
+    }, [cartProducts]);
+
+    let total = 0;
+    for( const productId of cartProducts) {
+        const price = products.find(p => p._id === productId)?.price || 0;
+        total += price;
+    }
+    let cartTotal = format_price(total)
 
     return (
         <>
@@ -55,7 +77,7 @@ export default function CartNav () {
             </IconCont>
             <TextCont>
                 <ValueText>SHOPPING CART</ValueText>
-                <span>({cartProducts.length}) Items - $Price</span>
+                <span>({cartProducts.length}) Items - ${cartTotal}</span>
             </TextCont>
         </CartCont>
         </>

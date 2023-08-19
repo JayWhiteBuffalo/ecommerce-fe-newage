@@ -6,12 +6,14 @@ import truck from "../public/images/truck.png"
 import box from "../public/images/return-box.png"
 import hand from "../public/images/hand.png"
 import CartNav from "./CartNav";
+import { secondary } from "@/lib/colors";
 
 
 const StyledHeader = styled.header`
 background-color: white;
-padding: .5rem 0rem;
+padding-top: .5rem;
 width: 100%;
+height:fit-content;
 
 `;
 const Logo =styled(Link)`
@@ -26,7 +28,7 @@ margin: 0px 20px;
 const Wrapper = styled.div`
     display: flex;
     position: relative;
-    padding: 20px 0px;
+    padding-top: 1rem;
     flex-direction: column;
     width: 99%;
 `

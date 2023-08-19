@@ -8,6 +8,7 @@ import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
 import Box from "@/components/Box";
+import { format_price } from "@/utils/helpers";
 
 const ColumnWrapper = styled.div`
     display: grid;
@@ -94,6 +95,7 @@ export default function CartPage() {
         const price = products.find(p => p._id === productId)?.price || 0;
         total += price;
     }
+    let cartTotal = format_price(total);
     if (isSuccess) {
         return (
             <>
@@ -146,14 +148,14 @@ export default function CartPage() {
                         <Button onClick={() => addQuantity(product._id)}>+</Button>
                     </td>
                     <td>
-                        ${cartProducts.filter(id => id === product._id).length * product.price}
+                     ${format_price(cartProducts.filter(id => id === product._id).length * (product.price))}
                     </td>
                 </tr>
             ))}
                 <tr>
                     <td></td>
                     <td></td>
-                    <td>${total}</td>
+                    <td>${cartTotal}</td>
                 </tr>
                 </tbody>
             </Table>
