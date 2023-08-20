@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Center from "./Center";
 import ProductsGrid from "./ProductGrid";
-import { secondary } from "@/lib/colors";
+import { gold, secondary } from "@/lib/colors";
 
 const TitleCont = styled.div`
     width: 100%;
@@ -11,8 +11,6 @@ const TitleCont = styled.div`
     font-size: 26px;
     font-weight: 600;
     position: relative;
-    background-color: ${secondary};
-
     &:after{
         content:'';
         width: 95%;
@@ -21,17 +19,17 @@ const TitleCont = styled.div`
         left: 0;
         top: 50%;
         z-index: 1;
-        border-color: white;
+        border-color: ${gold};
     }
 `;
 
 const Title = styled.h2`
-    background-color: ${secondary};
+    background-color: #eee;
     width: auto;
     display: inline-block;
     z-index: 3;
-    padding: 0 20px 0 50px;
-    color: white;
+    padding: 0 20px 0 100px;
+    color: ${gold};
     position: relative;
     font-family: calibri;
     font-weight: lighter;

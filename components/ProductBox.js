@@ -1,46 +1,50 @@
-import styled from "styled-components"
+import styled, { css, keyframes }  from "styled-components"
+import { ifProp } from "styled-tools";
+import { slideInDown, slideOutUp } from "react-animations";
 import Button from "./Button";
 import CartIcon from "./icons/CartIcon";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "./CartContext";
 import SaleTag from "./SaleTag";
+
 
 const ProductWrapper = styled.div`
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
     &:hover {
-        
-        img {
-            scale: 105%;
-        }
+
     }
 `;
-const Box = styled(Link)`
+const Box = styled.div`
     position:relative;
     background-color: white;
-    padding: 30px;
-    height: 15vh;
+    padding: 0px;
+    height: 35vh;
+    width: 100%;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    img{
-        max-width: 100%;
-        max-height: 120px;
-    }
-    &:hover {
-        
-    }
+    overflow:hidden;
 `;
+
+const ImageCont = styled.div`
+    height: 100%;
+    width: 100%;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+`
 
 const Title = styled(Link)`
     font-weight: 600;
-    font-size: 1.125rem;
-    margin: 8px 0;
-    text-align: center;
+    font-size: .75rem;
+    text-align: left;
     color: inherit;
     text-decoration:none;
 `;
@@ -49,7 +53,7 @@ const ProductInfoBox = styled.div`
     margin-top: 5px;
     display: flex;
     flex-direction: column;
-    gap: .75rem;
+    gap: .5rem;
     align-items: start;
     height: auto;
 `;
@@ -62,7 +66,7 @@ const PriceRow = styled.div`
 `;
 
 const Price = styled.div`
-    font-size: 1.25rem;
+    font-size: .75rem;
     font-weight: 600;
 `
 
@@ -70,25 +74,78 @@ const Traits = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: .5rem;
-    font-size: .75rem;
+    font-size: .6rem;
+`;
+
+const fadeIn = keyframes`
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 2rem;
+  }
+`
+
+const ItemButtons = styled.div`
+    position: absolute;
+    bottom: 0%;
+    display: flex;
+    width: 95%;
+    gap: .5rem;
+    background-color: white;
+    padding: .5rem .5rem;
+    opacity: 70%;
+    animation: .175s ${fadeIn} ease-out;
+`;
+    
+const ItemLink = styled(Link)`
+    width: 50%;
+    height: 17px;
+    position: relative;
+    background-color: white;
+    opacity: 100%;
+    border: 1px solid black;
+    color:black;
+    border-radius: 0;
+    padding: .5rem .25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .65rem;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    &:hover{
+        background-color: black;
+        color: white;
+    }
 `
 
 export default function ProductBox({_id, title, description, price, images, properties,discount, ...rest}) {
     const {addProduct} = useContext(CartContext);
     const url = '/product/' + _id;
+    const [activeItem, setItem] = useState(null);
     // console.log(properties)
     return(
-    <ProductWrapper>
-        <Box href={url}>
+    <ProductWrapper onMouseEnter={()=>setItem('isActive')} onMouseLeave={()=>setItem(null)}>
+        <Box>
         {discount? (<SaleTag/>) : (null)}
-            <div>
+            <ImageCont>
             <img src={images[0]} alt =''/>
-            </div>
+            </ImageCont>
+        {activeItem != null? (
+        <ItemButtons>
+        <ItemLink href={url}>View Item</ItemLink>
+        <Button onClick={() => addProduct(_id)} itemCard>Add to Cart</Button>
+        </ItemButtons>
+        ):(null)
+        }
         </Box>
+
         <ProductInfoBox>
         <Title href={url}>
         {title}
         </Title>
+
         <Traits>
         {properties != undefined || null ? (
             Object.keys(properties).map((keyName, i) => (
@@ -104,14 +161,16 @@ export default function ProductBox({_id, title, description, price, images, prop
         ) : (null)}
         </Traits>
 
+        <span>Reviews</span>
+
         <PriceRow>
             <Price>
                 ${price}
             </Price>
         </PriceRow>
-        <Button onClick={() => addProduct(_id)} card>
+        {/* <Button onClick={() => addProduct(_id)} card>
             Add to Cart
-        </Button>
+        </Button> */}
         </ProductInfoBox>
     </ProductWrapper>
     );

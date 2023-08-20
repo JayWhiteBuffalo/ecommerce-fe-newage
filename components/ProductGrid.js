@@ -9,6 +9,7 @@ const StyledProductsGrid = styled.div`
     gap: 30px;
     padding: 30px;
     background-color: white;
+    margin-bottom: 2.5rem;
 
 `
 export default function ProductsGrid(props) {

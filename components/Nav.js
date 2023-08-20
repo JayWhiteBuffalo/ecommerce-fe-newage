@@ -2,7 +2,7 @@ import styled from "styled-components"
 import Link from "next/link";
 import { useContext, useState } from "react";
 import SeachBox from "./SearchBox";
-import { secondary } from "@/lib/colors";
+import { gold, secondary } from "@/lib/colors";
 
 const StyledNav = styled.nav`
 width: 100%;
@@ -51,7 +51,7 @@ font-weight: 600;
     transform: scaleX(0);
     transform-origin: bottom left;
     transition: transform 0.3s ease-out;
-    background: #e6a312;
+    background: ${gold};
 }
 :hover::after{
         transform: scaleX(1);

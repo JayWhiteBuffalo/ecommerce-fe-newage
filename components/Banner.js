@@ -15,8 +15,8 @@ import AboveBanner from "./AboveBanner"
 
 const heroItems = [
     {
-        image: banner0,
-        title: 'Crystal Collection',
+        image: banner4,
+        title: 'Sacred Collection',
         ahref: '',
     },
     {
@@ -30,8 +30,8 @@ const heroItems = [
         ahref: '',
     },
     {
-        image: banner4,
-        title: 'Sacred Collection',
+        image: banner0,
+        title: 'Crystal Collection',
         ahref: '',
     },
 ];

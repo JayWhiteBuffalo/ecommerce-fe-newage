@@ -46,17 +46,37 @@ ${props => props.card &&  css`
     border: 1px solid black;
     color:black;
     border-radius: 0;
-    padding: 1rem 0rem;
+    padding: .5rem 0rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
+    font-size: 1rem;
     letter-spacing: .1rem;
     &:hover{
         background-color: black;
         color: white;
     }
     `}
+${props => props.itemCard && css`
+    width: 50%;
+    height: 35px;
+    position: relative;
+    background-color: white;
+    opacity: 100%;
+    border: 1px solid black;
+    color:black;
+    border-radius: 0;
+    padding: .5rem .25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .65rem;
+    letter-spacing: .1rem;
+    &:hover{
+        background-color: black;
+        color: white;
+    }
+`}
 ${props => props.size === 'l' && css`
     font-size: 1.2rem;
     padding: 18px 20px;
