@@ -10,6 +10,7 @@ import Title from "@/components/Title"
 import SortBox from "@/components/SortBox"
 import SeachBox from "@/components/SearchBox"
 import { useState } from "react"
+import ProductFilter from "@/components/ProductFilter/ProductFilter"
 
 
 const SortCont = styled.div`
@@ -17,26 +18,36 @@ display: flex;
 justify-content: end;
 gap: 2rem;
 `
+const SectionWrap = styled.div`
+display: flex;
+gap:2rem;
+padding: 2rem 0rem;
+`
 
 export default function ProductsPage({products, categories}) {
 
     // const [filteredProducts, setFilteredProducts] = useState(products.products);
-    const [activeSort, setActiveSort] = useState('highest');
-    const [activeType, setActiveType] = useState('price');
+    const [activeSort, setActiveSort] = useState('dn2o');
     const [searchParams, setSearchParams] = useState('');
-    
 
+
+    
 
     return(
         <>
         <Header categories={categories} />
             <Center>
+                <SectionWrap>
+                <ProductFilter products={products.products} categories={categories}/>
+                <div>
                 <Title> All Products</Title>
                 <SortCont>
-                    <SortBox setActiveType={setActiveType} setActiveSort={setActiveSort}/>
-                    <SeachBox setSearchParams={setSearchParams} searchParams={searchParams}/>
+                    <SortBox  setActiveSort={setActiveSort}/>
+                    {/* <SeachBox setSearchParams={setSearchParams} searchParams={searchParams}/> */}
                 </SortCont>
-                <ProductsGrid products={products.products} activeSort={activeSort} activeType={activeType} searchParams={searchParams}/>
+                <ProductsGrid products={products.products} activeSort={activeSort}/>
+                </div>
+                </SectionWrap>
             </Center>
         </>
     )

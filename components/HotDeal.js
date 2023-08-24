@@ -99,7 +99,6 @@ const Traits = styled.div`
 
 export default function HotDeal ({product}) {
 
-console.log(product)
     return(
 
         <SectionCont>

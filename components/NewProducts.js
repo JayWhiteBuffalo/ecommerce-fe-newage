@@ -6,12 +6,22 @@ import { gold, secondary } from "@/lib/colors";
 const TitleCont = styled.div`
     width: 100%;
     height: 50px;
-    margin: 50px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     text-align: left;
     font-size: 26px;
     font-weight: 600;
     position: relative;
     &:after{
+        content:'';
+        width: 95%;
+        border-bottom: solid 1.5px #fff;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        z-index: 1;
+        border-color: ${gold};
+    }
+    &:before{
         content:'';
         width: 95%;
         border-bottom: solid 1.5px #fff;
@@ -37,12 +47,14 @@ const Title = styled.h2`
 `
 
 export default function NewProducts ({products}) {
+
+    let filteredProducts = products.slice(0,8);
     return (
         <Center>
             <TitleCont>
                 <Title>New Arrivals</Title>
             </TitleCont>
-        <ProductsGrid products={products}/>
+        <ProductsGrid products={filteredProducts}/>
         </Center>
     );
 }

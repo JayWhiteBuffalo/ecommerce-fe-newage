@@ -75,6 +75,9 @@ const Traits = styled.div`
     flex-wrap: wrap;
     gap: .5rem;
     font-size: .6rem;
+    justify-content: start;
+    align-items: start;
+
 `;
 
 const fadeIn = keyframes`
@@ -151,10 +154,10 @@ export default function ProductBox({_id, title, description, price, images, prop
             Object.keys(properties).map((keyName, i) => (
                 <>
                 {keyName === "primary" || keyName === "third" ? 
-                (<span>{properties[keyName].toUpperCase()}</span>
+                (<span key={i}>{properties[keyName].toUpperCase()}</span>
                 ) : (null)}  
                 {keyName === "secondary" ? 
-                (<span>+{properties[keyName].toUpperCase()}+</span>
+                (<span key={i}>+{properties[keyName].toUpperCase()}+</span>
                 ) : (null)}  
                 </>  
             ))

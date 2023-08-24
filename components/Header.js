@@ -10,12 +10,10 @@ import { secondary } from "@/lib/colors";
 
 
 const StyledHeader = styled.header`
-background-color: white;
-
 padding-top: .5rem;
 width: 100%;
 height:fit-content;
-
+background-color: white;
 `;
 const Logo =styled(Link)`
 width: 300px;

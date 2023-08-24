@@ -23,49 +23,37 @@ export default function ProductsGrid(props) {
         //     items
         // )
         setFilteredProducts(() => setFilteredProducts(sortedList));
-    },[props.activeSort, props.activeType, filteredProducts, props.searchParams]);
+    },[props.activeSort, filteredProducts]);
 
 
     function sortItems(){
-        if(props.activeSort === 'highest'){
-            if(props.activeType === "price"){
-                console.log("Price high to low")
+        if(props.activeSort === 'ph2l'){
                 let result = props.products.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
                 return result;
             }
-            if(props.activeType === "date"){
-                console.log("Date new to old")
+        if(props.activeSort === "dn2o"){
                 let result = (props.products.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)));
-                console.log(result)
                 return result;
             }
-            if(props.activeType === "title"){
-                console.log("A-Z")
-                let result = (props.products.sort((a, b) => b.title.replaceAll(' ','').toUpperCase().localeCompare(a.title.replaceAll(' ','').toUpperCase())));
-                console.log(result)
+        if(props.activeSort === "z2a"){
+            let result = (props.products.sort((a, b) => b.title.replaceAll(' ','').toUpperCase().localeCompare(a.title.replaceAll(' ','').toUpperCase())));
                 return result;
         }
-    }
-        if(props.activeSort === 'lowest'){
-            if(props.activeType === "price"){
-                console.log("Price low to high")
+        if(props.activeSort === 'pl2h'){
                 let result = (props.products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price)));
                 return result;
             }
-            if(props.activeType === "date"){
-                console.log("Date old to new")
+        if(props.activeSort === "do2n"){
                 let result = (props.products.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt)));
-                console.log(result)
                 return result;
             }
-            if(props.activeType === "title"){
-                console.log("Z-A")
+        if(props.activeSort === "a2z"){
                 let result = (props.products.sort((a, b) => a.title.replaceAll(' ','').toUpperCase().localeCompare(b.title.replaceAll(' ','').toUpperCase())));
-                console.log(result)
                 return result;
         }
-            }
     }
+
+
 
     return(
         <StyledProductsGrid>

@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import SeachBox from "./SearchBox";
 import { gold, secondary } from "@/lib/colors";
 
+
 const StyledNav = styled.nav`
 width: 100%;
 align-items: start;
@@ -15,7 +16,6 @@ display: flex;
 align-items: center;
 text-align:center;
 justify-content: space-evenly;
-background-color:white;
 }
 `
 

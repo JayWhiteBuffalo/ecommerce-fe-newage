@@ -39,7 +39,7 @@ span{
     opacity: 70%;
 }
 `
-const ValueText = styled.text`
+const ValueText = styled.p`
 font-weight: 700;
 font-size: .75rem;
 `

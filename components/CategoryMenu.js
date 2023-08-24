@@ -77,14 +77,13 @@ span{
     color: #ccc
 }
 `
-const ValueText = styled.text`
+const ValueText = styled.span`
 font-weight: 700;
 font-size: .75rem;
 `
 
 const CategoryMenu = ({categories}) => {
 
-    console.log(categories)
 
     return(
         <SectionCont>
