@@ -26,9 +26,9 @@ padding: 2rem 0rem;
 
 export default function ProductsPage({products, categories}) {
 
-    // const [filteredProducts, setFilteredProducts] = useState(products.products);
+    const [filteredProducts, setFilteredProducts] = useState(products);
     const [activeSort, setActiveSort] = useState('dn2o');
-    const [searchParams, setSearchParams] = useState('');
+    // const [searchParams, setSearchParams] = useState('');
 
 
     
@@ -38,14 +38,14 @@ export default function ProductsPage({products, categories}) {
         <Header categories={categories} />
             <Center>
                 <SectionWrap>
-                <ProductFilter products={products.products} categories={categories}/>
+                <ProductFilter products={products.products} categories={categories} setFilteredProducts={setFilteredProducts}/>
                 <div>
                 <Title> All Products</Title>
                 <SortCont>
                     <SortBox  setActiveSort={setActiveSort}/>
                     {/* <SeachBox setSearchParams={setSearchParams} searchParams={searchParams}/> */}
                 </SortCont>
-                <ProductsGrid products={products.products} activeSort={activeSort}/>
+                <ProductsGrid setFilteredProducts={setFilteredProducts} products={products.products} activeSort={activeSort} filteredProducts={filteredProducts} />
                 </div>
                 </SectionWrap>
             </Center>

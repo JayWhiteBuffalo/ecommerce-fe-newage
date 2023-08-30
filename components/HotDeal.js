@@ -4,6 +4,7 @@ import Link from "next/link";
 import Button from "./Button";
 import Center from "./Center";
 import SaleTag from "./SaleTag";
+import Image from "next/image";
 
 const SectionCont = styled.section`
     width: 450px;
@@ -109,7 +110,13 @@ export default function HotDeal ({product}) {
                 <Box href="/">
                 <div>
                 {product.discount? (<SaleTag/>) : (null)}
-                    <img src={product.images[0]} alt =''/>
+                    <Image
+                        src={product.images[0]} 
+                        alt ='' 
+                        style={{width:'100%', height:'auto'}} 
+                        width={500}
+                        height={250}
+                    />
                 </div>
                 </Box>
                 <ProductInfoBox>

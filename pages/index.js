@@ -6,13 +6,13 @@ import { Product } from "@/modals/Product";
 import { Category } from "@/modals/Category";
 import HomePage from "@/components/HomePage";
 
-export default function Home({featuredProduct, newProducts, categories}) {
+export default function Home({featuredProduct, products, categories}) {
 
 
   return(
     <>
     <Header/>
-    <HomePage featuredProduct={featuredProduct} newProducts={newProducts} categories={categories}/>
+    <HomePage featuredProduct={featuredProduct} products={products} categories={categories}/>
     </>
   )
 }
@@ -21,13 +21,12 @@ export async function getServerSideProps() {
   const featuredProductId = '64dfac49918f50837ef604cc';
   await mongooseConnect();
   const featuredProduct = await Product.findById(featuredProductId);
-  const newProducts = await Product.find({}, null, {sort: {'_id':-1}});
+  const products = await Product.find({}, null, {sort: {'_id':-1}});
   const categories = await Category.find({}, null, {sort: {'_id':-1}});
-  console.log(featuredProduct)
   return {
     props: {
       featuredProduct: JSON.parse (JSON.stringify(featuredProduct)),
-      newProducts: JSON.parse(JSON.stringify(newProducts)),
+      products: JSON.parse(JSON.stringify(products)),
       categories: JSON.parse(JSON.stringify(categories))
     },
   }

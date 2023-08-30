@@ -53,9 +53,9 @@ export default function Header({categories}){
       
                 <ValueCardCont>
                     <Logo href="\"></Logo>
-                    <ValueCard icon={truck.src}title={"FREE SHIPPING"} subtext={"On orders over $100.00"}/>
-                    <ValueCard icon={box.src}title={"FREE RETURN"} subtext={"Free 30 day return policy"}/>
-                    <ValueCard icon={hand.src}title={"MEMBER DISCOUNT"} subtext={"Free to register"}/>
+                    <ValueCard icon={truck}title={"FREE SHIPPING"} subtext={"On orders over $100.00"}/>
+                    <ValueCard icon={box}title={"FREE RETURN"} subtext={"Free 30 day return policy"}/>
+                    <ValueCard icon={hand}title={"MEMBER DISCOUNT"} subtext={"Free to register"}/>
                     <CartWrap>
                     <CartNav/>
                     </CartWrap>

@@ -1,0 +1,2 @@
+export const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
+export const CLEAR_FILTER = 'CLEARfILTER';

@@ -5,8 +5,9 @@ import Button from "./Button";
 import ButtonLink from "./ButtonLink";
 import CartIcon from "./icons/CartIcon";
 import { useContext } from "react";
-import { CartContext } from "./CartContext";
+import { CartContext } from "../context/CartContext";
 import SectionTitle from "./SectionTitle";
+import Image from "next/image";
 
 const Bg = styled.div`
 background-color: #ccc;
@@ -65,7 +66,7 @@ export default function Featured({product}) {
                         </div>
                     </Column>
                     <Column>
-                        <img src={product.images} width={300} alt=""/>
+                        <Image src={product.images} width={300} height={300} alt=""/>
                     </Column>
                 </Wrapper>
             </Center>

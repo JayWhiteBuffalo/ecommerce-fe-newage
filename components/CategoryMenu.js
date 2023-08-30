@@ -2,6 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import icon from "../public/images/return-box.png"
 import { secondary } from "@/lib/colors";
+import Image from "next/image";
 
 const SectionCont = styled.section`
     width: 350px;
@@ -96,7 +97,7 @@ const CategoryMenu = ({categories}) => {
                 cat.parent != null ? ( null) : (
                     <CatBox key={id} href={"/" + cat.name}>
                         <IconCont>
-                            <img src={icon.src}/>
+                            <Image src={icon} alt="" style={{width:'55%', height:'auto'}}/>
                         </IconCont>
                         <TextCont>
                             <h3>{cat.name}</h3>

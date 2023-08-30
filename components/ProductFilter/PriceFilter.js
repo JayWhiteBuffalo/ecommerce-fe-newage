@@ -7,9 +7,9 @@ import { format_price } from "@/utils/helpers";
 const PriceCont = styled.div`
 display: flex;
 flex-direction: column;
-width: 100%;
+width: fit-content;
 gap: 1rem;
-padding: .5rem;
+padding: 1rem;
 justify-items: center;
 align-items: center;
 `;
@@ -31,7 +31,23 @@ gap: 1rem;
 justify-content: space-between;
 `;
 
-export default function PriceFilter ({products}) {
+const SectionHead = styled.button`
+position: relative;
+width: 100%;
+border: none;
+padding: .25rem;
+h3{
+text-align: left;
+font-size: 1rem;
+font-weight: 600;
+letter-spacing: 3px;
+}
+`
+
+export default function PriceFilter ({filterPrice ,min,max,products, price, setPrice}) {
+
+    const [isActive, setIsActive] = useState(false);
+    const [render, rerender] = useState(false)
 
     function findParams(params){
         let x = products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
@@ -40,19 +56,24 @@ export default function PriceFilter ({products}) {
      }
  
      let params = findParams();
-     let min = format_price(params[0])
-     let max = format_price(params[1])
+   
 
-    const [price, setPrice] = useState([min, max]);
+    // const [price, setPrice] = useState([min, max]);
 
     const handlePriceChange = (newValue) => {
         let cleanPrice = [format_price(newValue[0]),format_price(newValue[1])]
         console.log(cleanPrice)
         setPrice(cleanPrice);
+        filterPrice()
+
     }
 
     return(
-        <PriceCont>
+        <>
+        <SectionHead onClick={() => setIsActive(!isActive)}>
+        <h3>PRICE</h3>
+        </SectionHead>
+        {isActive && <PriceCont>
             <InputCont>
                 <input type="text" value={price[0]}/>
                 <label>-</label>
@@ -73,6 +94,7 @@ export default function PriceFilter ({products}) {
                 <span>${min}</span>
                 <span>${max}</span>
             </PriceParams>
-        </PriceCont>
+        </PriceCont>}
+        </>
     )
 }

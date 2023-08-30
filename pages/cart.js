@@ -3,12 +3,13 @@ import Center from "@/components/Center";
 import Header from "@/components/Header"
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components"
-import { CartContext } from "@/components/CartContext";
+import { CartContext } from "@/context/CartContext";
 import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
 import Box from "@/components/Box";
 import { format_price } from "@/utils/helpers";
+import Image from "next/image";
 
 const ColumnWrapper = styled.div`
     display: grid;
@@ -75,7 +76,7 @@ export default function CartPage() {
             setIsSuccess(true);
             clearCart();
         }
-    }, []);
+    }, [clearCart]);
     function addQuantity(id){
         addProduct(id);
     }
@@ -132,12 +133,21 @@ export default function CartPage() {
                     </tr>
                 </thead>
                 <tbody>
-            {products.map(product => (
-                <tr>
+            {products.map((product, i) => (
+                <tr key={i}>
                     <ProductInfoCell>
                         {product.title}:
                         <ProductImageBox>
-                            <img src={product.images[0]}/>
+                            <Image 
+                            src={product.images[0]} 
+                            alt=""       
+                            style={{
+                                width: '100%',
+                                height: 'auto',
+                            }}
+                            width={500}
+                            height={300}
+                            />
                         </ProductImageBox>
                     </ProductInfoCell>
                     <td>

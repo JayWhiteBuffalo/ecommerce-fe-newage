@@ -10,6 +10,7 @@ import { useState } from "react"
 import NextImage from 'next/image'
 import BelowBanner from "./BelowBanner"
 import AboveBanner from "./AboveBanner"
+import Image from "next/image"
 
 
 
@@ -164,12 +165,24 @@ export default function Banner(){
             </BannerInnerCont>
                 <CaroselButtonWrap>
                     <CarouselButton onClick={()=> prevSlide()}>
-                        <img src={carouselBtn .src} alt=""/>
+                        <Image 
+                        src={carouselBtn} 
+                        alt="Previous Slide"       
+                        style={{
+                            width: '100%',
+                            height: 'auto',
+                        }}/>
                     </CarouselButton>
                 </CaroselButtonWrap>
                 <CaroselButtonWrap next>
                     <CarouselButton onClick={()=> nextSlide()}>
-                        <img src={carouselBtn.src} alt=""/>
+                    <Image 
+                        src={carouselBtn} 
+                        alt="Next Slide"       
+                        style={{
+                            width: '100%',
+                            height: 'auto',
+                        }}/>
                     </CarouselButton>
                 </CaroselButtonWrap>
         </BannerWrap>

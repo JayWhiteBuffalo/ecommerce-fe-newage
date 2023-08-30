@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect} from "react"
 import styled from "styled-components"
 import loupe from "../public/images/loupe.png"
+import Image from "next/image";
 
 const InputBox = styled.input`
 height: 30px;
@@ -36,15 +37,15 @@ background-color: white;
 border-radius: 5px;
 height:20px;
 `
-export default function SeachBox(props) {
+export default function SeachBox({setSearchParams, ...rest}) {
 
 
 
     const searchValue = useRef("")
 
     useEffect((e) => {
-        props.setSearchParams(searchValue.current);
-    }, [handleChange])
+        setSearchParams(searchValue.current);
+    }, [handleChange,setSearchParams])
 
     function handleChange(e){
         searchValue.current = e.target.value;
@@ -55,7 +56,10 @@ export default function SeachBox(props) {
         <SearchCont>
         <InputBox onChange={(e)=>handleChange(e)} type="text" placeholder="Search"/>
         <IconCont>
-        <img src={loupe.src}/>
+        <Image src={loupe} alt=""      style={{
+        width: '100%',
+        height: 'auto',
+      }}/>
         </IconCont>
         </SearchCont>
     )

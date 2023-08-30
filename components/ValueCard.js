@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 
 
@@ -18,7 +19,7 @@ position: relative;
 justify-content: center;
 align-items: center;
 padding: .25rem;
-img{
+Image{
     width: 100%;
 }
 `
@@ -49,7 +50,10 @@ export default function ValueCard ({icon, title, subtext}) {
         <>
         <Cont>
             <IconCont>
-                <img src={icon} alt = ""/>
+                <Image src={icon} alt = "" style={{
+        width: '100%',
+        height: 'auto',
+      }}/>
             </IconCont>
             <TextCont>
                 <ValueText>{title}</ValueText>

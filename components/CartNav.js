@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CartContext } from "./CartContext";
+import { CartContext } from "../context/CartContext";
 import CartIcon from "./icons/CartIcon";
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";

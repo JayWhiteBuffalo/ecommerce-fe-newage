@@ -3,6 +3,7 @@ import styled from "styled-components";
 import crystals from "../public/images/crystals.png"
 import divination from "../public/images/divination.jpg"
 import healinghands from "../public/images/healinghands.webp"
+import Image from "next/image";
 
 const CategoryBtn = styled.button`
     display: flex;
@@ -61,25 +62,25 @@ export default function CategoryCards() {
         <Center>
             <CategorySection>
                 <CategoryBtn>
-                    <img src={"https://i.pinimg.com/originals/d2/b5/2c/d2b52c38b5dbc66df4220f570aece8a9.jpg"} alt=""/>
+                    {/* <Image src={"https://i.pinimg.com/originals/d2/b5/2c/d2b52c38b5dbc66df4220f570aece8a9.jpg"} alt=""/> */}
                     <TagCont>
                     <CatTag>Crystals</CatTag>
                     </TagCont>
                 </CategoryBtn>
                 <CategoryBtn>
-                    <img src={"https://www.villagerockshop.com/media/images/green-bracelets.jpg"} alt=""/>
+                    {/* <img src={"https://www.villagerockshop.com/media/images/green-bracelets.jpg"} alt=""/> */}
                     <TagCont>
                     <CatTag>Jewley</CatTag>
                     </TagCont>
                 </CategoryBtn>
                 <CategoryBtn>
-                    <img src={"https://i.ytimg.com/vi/XokegB-P9wA/maxresdefault.jpg"} alt=""/>
+                    {/* <img src={"https://i.ytimg.com/vi/XokegB-P9wA/maxresdefault.jpg"} alt=""/> */}
                     <TagCont>
                     <CatTag>New Arrivals</CatTag>
                     </TagCont>
                 </CategoryBtn>
                 <CategoryBtn>
-                    <img src={"https://i.pinimg.com/originals/1f/5b/cb/1f5bcbd5ed4714b401218c8601fbde52.jpg"} alt=""/>
+                    {/* <img src={"https://i.pinimg.com/originals/1f/5b/cb/1f5bcbd5ed4714b401218c8601fbde52.jpg"} alt=""/> */}
                     <TagCont>
                     <CatTag>Best Sellers</CatTag>
                     </TagCont>

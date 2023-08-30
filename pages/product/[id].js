@@ -4,7 +4,7 @@ import Center from "@/components/Center";
 import styled from "styled-components";
 import Button from "@/components/Button";
 import Box from "@/components/Box";
-import { CartContext } from "@/components/CartContext";
+import { CartContext } from "@/context/CartContext";
 import { useContext } from "react";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/modals/Product";

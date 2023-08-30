@@ -5,8 +5,9 @@ import Button from "./Button";
 import CartIcon from "./icons/CartIcon";
 import Link from "next/link";
 import { useContext, useState } from "react";
-import { CartContext } from "./CartContext";
+import { CartContext } from "../context/CartContext";
 import SaleTag from "./SaleTag";
+import Image from "next/image";
 
 
 const ProductWrapper = styled.div`
@@ -123,17 +124,20 @@ const ItemLink = styled(Link)`
     }
 `
 
-export default function ProductBox({_id, title, description, price, images, properties,discount, ...rest}) {
+export default function ProductBox(product) {
+    const {_id, title, description, price, images, properties,discount, ...rest} = product;
     const {addProduct} = useContext(CartContext);
     const url = '/product/' + _id;
     const [activeItem, setItem] = useState(null);
+
     // console.log(properties)
     return(
     <ProductWrapper onMouseEnter={()=>setItem('isActive')} onMouseLeave={()=>setItem(null)}>
         <Box>
         {discount? (<SaleTag/>) : (null)}
             <ImageCont>
-            <img src={images[0]} alt =''/>
+            <Image src={images[0]} alt ='' style={{width:'100%', height:'auto'}} width={500}
+      height={250}/>
             </ImageCont>
         {activeItem != null? (
         <ItemButtons>
@@ -148,7 +152,7 @@ export default function ProductBox({_id, title, description, price, images, prop
         <Title href={url}>
         {title}
         </Title>
-
+{/* 
         <Traits>
         {properties != undefined || null ? (
             Object.keys(properties).map((keyName, i) => (
@@ -162,7 +166,7 @@ export default function ProductBox({_id, title, description, price, images, prop
                 </>  
             ))
         ) : (null)}
-        </Traits>
+        </Traits> */}
 
         <span>Reviews</span>
 

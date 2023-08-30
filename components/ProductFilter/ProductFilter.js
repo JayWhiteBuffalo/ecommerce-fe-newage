@@ -1,101 +1,159 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import PriceFilter from "./PriceFilter";
+import CategoryFilter from "./CategoryFilter";
+import { format_price } from "@/utils/helpers";
+import Input from "../Input";
+import ProductContext from "@/context/ProductContext";
 
 
-export default function ProductFilter({products, categories}) {
+const Aside = styled.aside`
+width: 500px;
+height: fit-content;
+border: 1px solid black;
+`
 
-    const [status, setStatus] = useState('none')
+const DropdownSection = styled.div`
+position: relative;
+width: 100%;
+border: 1px solid gray;
+border-left: none;
+border-right: none;
+`;
+
+const SectionHead = styled.button`
+position: relative;
+width: 100%;
+border: none;
+padding: .25rem;
+h3{
+text-align: left;
+font-size: 1rem;
+font-weight: 600;
+letter-spacing: 3px;
+}
+`
+
+const Item = styled.div`
+display: flex;
+width:auto;
+gap: .5rem;
+justify-items: center;
+align-items: center;
+padding: .5rem 0rem;
+margin: .5rem;
+`
 
 
-    const Aside = styled.aside`
-    width: 500px;
-    height: fit-content;
-    border: 1px solid black;
-    `
-    
-    const DropdownSection = styled.div`
-    position: relative;
-    width: 100%;
-    border: 1px solid gray;
-    border-left: none;
-    border-right: none;
-    `;
+export default function ProductFilter() {
 
-    const SectionHead = styled.button`
-    position: relative;
-    width: 100%;
-    border: none;
-    padding: .25rem;
-    h3{
-    text-align: left;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 3px;
-    }
-    `
+    const productContext = useContext(ProductContext);
+    const {filterProducts, clearFilter } = productContext;
 
-    const Item = styled.div`
-    display: ${status};
-    width:auto;
-    gap: .5rem;
-    justify-items: center;
-    align-items: center;
-    padding: .5rem 0rem;
-    margin: .5rem;
-    `
-    //contents display none display block
-    const Checkbox = styled.input`
+    const [searchValue, setSearchValue] = useState('');
 
-    `
-
-    function toggleDropdown (e) {
-        if(status === 'none'){
-            setStatus('flex')
+    const handleChange = (e) => {
+        setSearchValue(e.target.value);
+        if(searchValue !== ''){
+            filterProducts(searchValue);
         } else {
-            setStatus('none')
+            clearFilter();
         }
-    };
+    }
+
+//     function findParams(){
+//         let x = products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+//         let y = [x[0].price, x[x.length-1].price]
+//         return y
+//      }
+ 
+//      let params = findParams();
+//      let min = format_price(params[0])
+//      let max = format_price(params[1])
+
+//     const[filters, setFilters] = useState([])
+//     const[stage, setStage] = useState([])
+//     const [price, setPrice] = useState([min, max]);
+
+//     let list = filters;
+
+//     function updateFilter(e){
+//         //price filter function
+//         filterCategories(e);
+//         setFilters(list)
+//         console.log(list)
+//         getFilteredProducts();
+//     }
 
 
-    console.log(products)
+//     function filterCategories(e){
+//         let filteredArray = list.includes(e.currentTarget.value);
+//         if(list.length <= 0){
+//             list.push(e.currentTarget.value)
+//             return
+//         }  
+//         if(filteredArray === false){
+//             list.push(e.currentTarget.value)
+//             return
+//         } else {
+//             let index = list.indexOf(e.currentTarget.value)
+//             list.splice(index,1)
+//         }
+//     }
 
+
+
+//     function filterPrice(){
+//         result = [];
+//         for (let i = 0; i < stage.length; i++) {
+//             if(stage[i].price >= price[0] && stage[i].price <= price[1]){
+//                 result.push(stage[i])
+//             }   
+//         }
+//         console.log(result)
+
+//     }
+
+//     function getFilteredProducts(){
+//         if(list.length <= 0){
+//             setStage(products)
+//         } else {
+//         const result = products.filter(p => list.includes(p.category));
+//         setStage(result)
+//     }
+// }
+    
     return(
+            // <Aside>
+            //     <div>
+            //         <div>
+            //             <h2> FILTER</h2>
+            //         </div>
+            //     </div>
+            //     <div>
+            //         <DropdownSection >
+            //             <CategoryFilter categories={categories} updateFilter={updateFilter} />
+            //         </DropdownSection>
+            //         <DropdownSection >           
+            //             <PriceFilter filterPrice={filterPrice} min={min} max={max} products = {products} price={price} setPrice={setPrice}/>
+            //         </DropdownSection>
+            //     </div>
+            // </Aside>
             <Aside>
-                <div>
+                  <div>
                     <div>
-                        <h2> FILTER</h2>
-                    </div>
-                </div>
-                <div>
-                <DropdownSection >
-                    <SectionHead onClick={(e)=>toggleDropdown(e)}>
-                    <h3>SHOP BY TYPE</h3>
-                    </SectionHead>
-                    {categories.map((cat) => (
-                    <Item >
-                    <Checkbox type="checkbox"/>
-                    <label>{cat.name}</label>
-                    </Item>
-                    ))}
-                </DropdownSection>
-                <DropdownSection >
-                    <SectionHead onClick={(e)=>toggleDropdown(e)}>
-                    <h3>PRICE</h3>
-                    </SectionHead>
-                    <Item >
-                        <PriceFilter products = {products}/>
-                    </Item>
-                </DropdownSection>
-    </div>
-                {/* Price Slider */}
-                {/* On Sale Items
-                By category
-                By type
-                By Color
-                By properties */}
+                         <h2> FILTER</h2>
+                     </div>
+                 </div>
+                 <form>
+                    <input
+                        value={searchValue}
+                        type='text'
+                        placeholder='Search'
+                        onChange={handleChange}
+                    />
+                 </form>
+
             </Aside>
-
-
     )
 }

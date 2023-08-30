@@ -31,7 +31,7 @@ const ProductSecWrap = styled.div`
     width: 100%;
     display: flex;
 `
-export default function HomePage ({featuredProduct, newProducts, categories}) {
+export default function HomePage ({featuredProduct, products, categories}) {
 
     return(
         <>
@@ -47,7 +47,7 @@ export default function HomePage ({featuredProduct, newProducts, categories}) {
         {/* <Featured product={featuredProduct}/> */}
             <HeroCont>
             <HotDeal product={featuredProduct}/>
-            <NewProducts products={newProducts} />
+            <NewProducts products={products} />
             </HeroCont>
         </>
     )
