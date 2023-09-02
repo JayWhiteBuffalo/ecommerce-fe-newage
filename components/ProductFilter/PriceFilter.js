@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import ProductContext from "@/context/ProductContext";
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { format_price } from "@/utils/helpers";
+import { format_price, get_price_params } from "@/utils/helpers";
 
 const PriceCont = styled.div`
 display: flex;
@@ -44,28 +45,31 @@ letter-spacing: 3px;
 }
 `
 
-export default function PriceFilter ({filterPrice ,min,max,products, price, setPrice}) {
+export default function PriceFilter () {
 
+    useEffect(()=>{
+        let params = get_price_params(products);
+        let min = format_price(params[0])
+        let max = format_price(params[1])
+        setPriceParams([min,max])
+     },[]);
+
+    const productContext = useContext(ProductContext);
+    const {filterProducts, filterCategories, clearFilter, filterByPrice, products, filtered } = productContext;
     const [isActive, setIsActive] = useState(false);
-    const [render, rerender] = useState(false)
+    const [price, setPrice] = useState([]);
+    const [priceParams, setPriceParams] = useState([])
 
-    function findParams(params){
-        let x = products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-        let y = [x[0].price, x[x.length-1].price]
-        return y
-     }
+     const min = priceParams[0];
+     const max = priceParams[1];
  
-     let params = findParams();
-   
 
-    // const [price, setPrice] = useState([min, max]);
 
     const handlePriceChange = (newValue) => {
-        let cleanPrice = [format_price(newValue[0]),format_price(newValue[1])]
-        console.log(cleanPrice)
-        setPrice(cleanPrice);
-        filterPrice()
 
+        let value=[format_price(newValue[0]), format_price(newValue[1])]
+        setPrice(value);
+        filterByPrice(newValue);
     }
 
     return(
@@ -75,24 +79,24 @@ export default function PriceFilter ({filterPrice ,min,max,products, price, setP
         </SectionHead>
         {isActive && <PriceCont>
             <InputCont>
-                <input type="text" value={price[0]}/>
+                <input type="text" defaultValue={priceParams[0]} value={price[0]}/>
                 <label>-</label>
-                <input type="text" value={price[1]}/>
+                <input type="text" defaultValue={priceParams[1]} value={price[1]}/>
             </InputCont>
             <Slider
                 range
-                min={params[0]}
-                max={params[1]}
+                min={Number(priceParams[0])}
+                max={Number(priceParams[1])}
                 step={.01}
                 // value={price}
                 // onChange={handlePriceChange}
                 allowCross={false}
-                defaultValue={price}
+                defaultValue={priceParams}
                 onAfterChange={(e)=>handlePriceChange(e)}
             />    
             <PriceParams>
-                <span>${min}</span>
-                <span>${max}</span>
+                <span>${priceParams[0]}</span>
+                <span>${priceParams[1]}</span>
             </PriceParams>
         </PriceCont>}
         </>

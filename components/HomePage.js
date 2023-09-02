@@ -8,6 +8,7 @@ import CategoryMenu from "./CategoryMenu";
 import ad from "../public/images/plantbannerad.jpg"
 import BelowBanner from "./BelowBanner";
 import HotDeal from "./HotDeal";
+import ProductFilter from "./ProductFilter/ProductFilter";
 
 const CatMenu = styled.aside`
 display: flex;
@@ -31,13 +32,13 @@ const ProductSecWrap = styled.div`
     width: 100%;
     display: flex;
 `
-export default function HomePage ({featuredProduct, products, categories}) {
+export default function HomePage () {
 
     return(
         <>
         <HeroCont>
         <CatMenu>
-            <CategoryMenu categories={categories}/>
+            <CategoryMenu />
         </CatMenu>
         <BannerWrap>
         <Banner/>
@@ -45,9 +46,11 @@ export default function HomePage ({featuredProduct, products, categories}) {
         </HeroCont>
         <BelowBanner/>
         {/* <Featured product={featuredProduct}/> */}
-            <HeroCont>
+            {/* <HeroCont>
             <HotDeal product={featuredProduct}/>
-            <NewProducts products={products} />
+            </HeroCont> */}
+            <HeroCont>
+            <NewProducts/>
             </HeroCont>
         </>
     )

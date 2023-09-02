@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
-const StyledSelect= styled.select`
-    height: 50px;
+const StyledSelect= styled.input`
+    height: 20px;
     width: 200px;
     padding: 8px;
 `;

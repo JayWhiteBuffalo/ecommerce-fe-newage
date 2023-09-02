@@ -9,44 +9,65 @@ import styled from "styled-components"
 import Title from "@/components/Title"
 import SortBox from "@/components/SortBox"
 import SeachBox from "@/components/SearchBox"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import ProductSearch from "@/components/ProductFilter/ProductSearch"
+import ProductSort from "@/components/ProductFilter/ProductFilter"
 import ProductFilter from "@/components/ProductFilter/ProductFilter"
+import PriceFilter from "@/components/ProductFilter/PriceFilter"
 
 
-const SortCont = styled.div`
-display: flex;
-justify-content: end;
-gap: 2rem;
-`
+const SortCont = styled.aside`
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 2rem;
+    width: 50%;
+`;
 const SectionWrap = styled.div`
-display: flex;
-gap:2rem;
-padding: 2rem 0rem;
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+    padding: 2rem 0rem;
+`;
+const SectionHead = styled.div`
+    display: flex;
+    width: 100%;
+    padding: 0rem 2rem;
+    justify-content: space-between;
+`;
+
+const SectionMain = styled.section`
+    display: flex;
+    gap: 3rem;
 `
 
-export default function ProductsPage({products, categories}) {
+export default function ProductsPage() {
 
-    const [filteredProducts, setFilteredProducts] = useState(products);
-    const [activeSort, setActiveSort] = useState('dn2o');
-    // const [searchParams, setSearchParams] = useState('');
+    // useEffect(()=>{
+    //     //Your API Call
+    //  },[]);
 
-
-    
 
     return(
         <>
-        <Header categories={categories} />
+        <Header />
             <Center>
                 <SectionWrap>
-                <ProductFilter products={products.products} categories={categories} setFilteredProducts={setFilteredProducts}/>
-                <div>
-                <Title> All Products</Title>
-                <SortCont>
-                    <SortBox  setActiveSort={setActiveSort}/>
-                    {/* <SeachBox setSearchParams={setSearchParams} searchParams={searchParams}/> */}
-                </SortCont>
-                <ProductsGrid setFilteredProducts={setFilteredProducts} products={products.products} activeSort={activeSort} filteredProducts={filteredProducts} />
-                </div>
+                    <Center>
+                        <SectionHead>
+                            <Title> All Products</Title>
+                            <ProductSearch/>
+                        </SectionHead>
+                    </Center>
+                <SectionMain>
+                    <SortCont>
+                        <ProductFilter/>
+                    </SortCont>
+
+                       
+
+                    <ProductsGrid />
+                </SectionMain>
                 </SectionWrap>
             </Center>
         </>
@@ -55,14 +76,12 @@ export default function ProductsPage({products, categories}) {
 
 export async function getServerSideProps() {
     await mongooseConnect();
-    const products= await Product.find({}, null, {sort:{'_id':-1}});
+    const products = await Product.find({}, null, {sort: {'_id':-1}});
     const categories = await Category.find({}, null, {sort: {'_id':-1}});
     return {
-        props:{
-            products:{
-                products:JSON.parse(JSON.stringify(products)),
-            },
-            categories: JSON.parse(JSON.stringify(categories))
-        }
-    };
-}
+      props: {
+        products: JSON.parse(JSON.stringify(products)),
+        categories: JSON.parse(JSON.stringify(categories))
+      },
+    }
+  }

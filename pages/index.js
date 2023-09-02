@@ -5,19 +5,21 @@ import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/modals/Product";
 import { Category } from "@/modals/Category";
 import HomePage from "@/components/HomePage";
+import Footer from "@/components/Footer";
 
-export default function Home({featuredProduct, products, categories}) {
+export default function Home({featuredProduct, categories}) {
 
 
   return(
     <>
     <Header/>
-    <HomePage featuredProduct={featuredProduct} products={products} categories={categories}/>
+    <HomePage />
+    <Footer/>
     </>
   )
 }
 
-export async function getServerSideProps() {
+ export async function getServerSideProps() {
   const featuredProductId = '64dfac49918f50837ef604cc';
   await mongooseConnect();
   const featuredProduct = await Product.findById(featuredProductId);

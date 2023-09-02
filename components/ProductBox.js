@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import SaleTag from "./SaleTag";
 import Image from "next/image";
+import { format_price } from "@/utils/helpers";
 
 
 const ProductWrapper = styled.div`
@@ -130,7 +131,7 @@ export default function ProductBox(product) {
     const url = '/product/' + _id;
     const [activeItem, setItem] = useState(null);
 
-    // console.log(properties)
+
     return(
     <ProductWrapper onMouseEnter={()=>setItem('isActive')} onMouseLeave={()=>setItem(null)}>
         <Box>
@@ -152,7 +153,7 @@ export default function ProductBox(product) {
         <Title href={url}>
         {title}
         </Title>
-{/* 
+
         <Traits>
         {properties != undefined || null ? (
             Object.keys(properties).map((keyName, i) => (
@@ -166,13 +167,13 @@ export default function ProductBox(product) {
                 </>  
             ))
         ) : (null)}
-        </Traits> */}
+        </Traits>
 
         <span>Reviews</span>
 
         <PriceRow>
             <Price>
-                ${price}
+                ${format_price(price)}
             </Price>
         </PriceRow>
         {/* <Button onClick={() => addProduct(_id)} card>

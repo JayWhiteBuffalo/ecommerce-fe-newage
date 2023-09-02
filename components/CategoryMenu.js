@@ -3,6 +3,8 @@ import styled from "styled-components";
 import icon from "../public/images/return-box.png"
 import { secondary } from "@/lib/colors";
 import Image from "next/image";
+import { useContext } from "react";
+import ProductContext from "@/context/ProductContext";
 
 const SectionCont = styled.section`
     width: 350px;
@@ -83,8 +85,10 @@ font-weight: 700;
 font-size: .75rem;
 `
 
-const CategoryMenu = ({categories}) => {
+const CategoryMenu = () => {
 
+    const productContext = useContext(ProductContext);
+    const {categories} = productContext;
 
     return(
         <SectionCont>

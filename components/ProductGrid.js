@@ -3,7 +3,8 @@ import ProductBox from "./ProductBox"
 import { useState, useEffect, useRef, useContext } from "react";
 import { set } from "mongoose";
 import ProductContext from "@/context/ProductContext";
-import ProductFilter from "./ProductFilter/ProductFilter";
+import ProductState from "@/context/ProductState";
+import ProductFilter from "./ProductFilter/ProductSearch";
 
 const StyledProductsGrid = styled.div`
     display: grid;
@@ -60,14 +61,18 @@ export default function ProductsGrid() {
     // }
 
         const productContext = useContext(ProductContext);
-        const {products, filtered} = productContext;
+        const {products, filtered, setLoadedProducts,loadedProducts } = productContext;
 
+        useEffect(() => {
 
+            setLoadedProducts(filtered)
+            }
+        ,[filtered])
 
+        
     return(
 
         <StyledProductsGrid>
-            <ProductFilter/>
             {
                 filtered !==null ? (
                     filtered.map(product => 
@@ -77,8 +82,7 @@ export default function ProductsGrid() {
                         )
                 ) : (
                     products.map(product => 
-                        <ProductBox key={product.id} {...product}/>)  
-                    
+                        <ProductBox key={product.id} {...product}/>)                   
                 )
             }
         </StyledProductsGrid>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Center from "./Center";
 import ProductsGrid from "./ProductGrid";
 import { gold, secondary } from "@/lib/colors";
+import ProductFilter from "./ProductFilter/ProductSearch";
 
 const TitleCont = styled.div`
     width: 100%;
@@ -46,15 +47,14 @@ const Title = styled.h2`
     margin: 0;
 `
 
-export default function NewProducts ({products}) {
+export default function NewProducts () {
 
-    let filteredProducts = products.slice(0,8);
     return (
         <Center>
             <TitleCont>
                 <Title>New Arrivals</Title>
             </TitleCont>
-        <ProductsGrid products={filteredProducts}/>
+        <ProductsGrid/>
         </Center>
     );
 }
