@@ -7,18 +7,19 @@ import TraitsFilter from "./TraitsFilter";
 
 const Aside = styled.aside`
 width: auto;
+min-width: 15vw;
 height: fit-content;
-
 display: flex;
 gap: 2rem;
 padding: .5rem;
-justify-content: end;
+justify-content: center;
 align-items: center;
 `
 
 const DropdownSection = styled.div`
 position: relative;
 width: 100%;
+min-width: 15vw;
 border: 1px solid gray;
 border-left: none;
 border-right: none;
@@ -52,16 +53,7 @@ export default function ProductFilter () {
     const productContext = useContext(ProductContext);
     const {filterProducts, filterCategories, clearFilter } = productContext;
 
-    const [filter, setFilter] = useState('');
 
-    // const handleChange = (e) => {
-    //     setFilter(e.target.value);
-    //     if(searchValue !== ''){
-    //         filterProducts(searchValue);
-    //     } else {
-    //         clearFilter();
-    //     }
-    // }
     return(
 
                     <Aside>

@@ -15,7 +15,7 @@ const ProductWrapper = styled.div`
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
     overflow: hidden;
     &:hover {
 
@@ -25,7 +25,7 @@ const Box = styled.div`
     position:relative;
     background-color: white;
     padding: 0px;
-    height: 35vh;
+    height: 30vh;
     width: 100%;
     text-align: center;
     display: flex;
@@ -137,7 +137,7 @@ export default function ProductBox(product) {
         <Box>
         {discount? (<SaleTag/>) : (null)}
             <ImageCont>
-            <Image src={images[0]} alt ='' style={{width:'100%', height:'auto'}} width={500}
+            <Image src={images[0]} alt ='' style={{width:'100%', height:'100%'}} width={500}
       height={250}/>
             </ImageCont>
         {activeItem != null? (

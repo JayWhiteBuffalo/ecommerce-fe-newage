@@ -21,7 +21,7 @@ const SortCont = styled.aside`
     flex-direction: column;
     justify-content: start;
     gap: 2rem;
-    width: 50%;
+    width: 30%;
 `;
 const SectionWrap = styled.div`
     display: flex;
@@ -39,6 +39,11 @@ const SectionHead = styled.div`
 const SectionMain = styled.section`
     display: flex;
     gap: 3rem;
+`;
+
+const HeadCont = styled.div`
+    display:flex;
+    align-items: center;
 `
 
 export default function ProductsPage() {
@@ -56,16 +61,16 @@ export default function ProductsPage() {
                     <Center>
                         <SectionHead>
                             <Title> All Products</Title>
+                            <HeadCont>
+                            <SortBox/>
                             <ProductSearch/>
+                            </HeadCont>
                         </SectionHead>
                     </Center>
                 <SectionMain>
                     <SortCont>
                         <ProductFilter/>
-                    </SortCont>
-
-                       
-
+                    </SortCont>               
                     <ProductsGrid />
                 </SectionMain>
                 </SectionWrap>

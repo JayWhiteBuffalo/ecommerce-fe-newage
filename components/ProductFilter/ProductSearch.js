@@ -164,7 +164,6 @@ export default function ProductSearch() {
     
     return(
             <Aside>
-                <h2> Search Products</h2> 
                 <SearchCont>
                     <InputBox
                         value={searchValue}

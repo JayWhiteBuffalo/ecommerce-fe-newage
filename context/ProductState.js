@@ -7,6 +7,7 @@ import {
         FILTER_CATEGORIES,
         FILTER_BY_PRICE,
         FILTER_BY_TRAIT,
+        SORT_PRODUCTS
 } from './types';
 import { mongooseConnect } from "@/lib/mongoose"
 
@@ -42,6 +43,10 @@ const filterByTrait = (trait) => {
     dispatch({type: FILTER_BY_TRAIT, payload: trait})
 }
 
+const sortProducts = (sort) => {
+    dispatch({type: SORT_PRODUCTS, payload: sort})
+}
+
 //Clear filter
 const clearFilter = () => {
     dispatch({type: CLEAR_FILTER});
@@ -70,6 +75,7 @@ return(
             setLoadedProducts,
             filterByPrice,
             filterByTrait,
+            sortProducts,
             loadedProducts,
         }}
         >
