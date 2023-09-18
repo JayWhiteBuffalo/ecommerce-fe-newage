@@ -12,6 +12,7 @@ text-align: left;
 font-size: 1rem;
 font-weight: 600;
 letter-spacing: 3px;
+
 }
 `
 

@@ -13,13 +13,11 @@ const SectionWrap = styled.section`
 const Cont = styled.div`
     width: 100%;
     height: auto;
-    background-color: #fff;
+    background-color: #eee;
     display: flex;
     gap: 1rem;
     justify-content: space-evenly;
     margin: 1rem 0rem;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 `;
 
 
@@ -31,6 +29,7 @@ const Ad1 = styled.div`
     background-size: cover;
     padding: 1rem;
     background-position: center;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 `;
 
 const Ad2 = styled.div`
@@ -42,6 +41,7 @@ const Ad2 = styled.div`
     background-size: cover;
     padding: 1rem;
     background-position: center;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 `
 
 

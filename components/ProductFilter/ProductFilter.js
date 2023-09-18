@@ -14,6 +14,7 @@ gap: 2rem;
 padding: .5rem;
 justify-content: center;
 align-items: center;
+background-color: white;
 `
 
 const DropdownSection = styled.div`
@@ -23,6 +24,7 @@ min-width: 15vw;
 border: 1px solid gray;
 border-left: none;
 border-right: none;
+background-color: white;
 `;
 
 const SectionHead = styled.button`
@@ -31,6 +33,7 @@ width: 100%;
 border: none;
 padding: .25rem;
 h3{
+    
 text-align: left;
 font-size: 1rem;
 font-weight: 600;

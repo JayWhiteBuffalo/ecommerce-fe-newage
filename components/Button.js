@@ -6,7 +6,6 @@ background-color: #5542F6;
 border: 0;
 color: #fff;
 padding: 5px 15px;
-border-radius: 5px;
 cursor: pointer;
 display: inline-flex;
 align-items: center;

@@ -83,12 +83,14 @@ padding: .5rem;
 
 export default function Nav () {
     const [searchParams, setSearchParams] = useState('');
+
+
 return(
     <StyledNav>
         <NavBar>
             <NavGrid>
                 <div>
-                    <NavLink href={'/'}><h4>HOME</h4></NavLink>
+                    <NavLink  href={'/'}><h4>HOME</h4></NavLink>
                     <NavLink href={'/products'}><h4>PRODUCTS</h4></NavLink>
                     <NavLink href={'/services'}><h4>SERVICES</h4></NavLink>
                     <NavLink href={'/support'}><h4>SUPPORT</h4></NavLink>

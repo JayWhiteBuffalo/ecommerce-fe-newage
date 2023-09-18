@@ -12,20 +12,19 @@ import { format_price } from "@/utils/helpers";
 
 
 const ProductWrapper = styled.div`
-
     display: flex;
     flex-direction: column;
     justify-content: start;
     overflow: hidden;
-    &:hover {
+    max-height: auto;
 
-    }
 `;
 const Box = styled.div`
     position:relative;
     background-color: white;
     padding: 0px;
-    height: 30vh;
+    min-height: 25vh;
+    max-height: 25vh;
     width: 100%;
     text-align: center;
     display: flex;
@@ -58,6 +57,7 @@ const ProductInfoBox = styled.div`
     gap: .5rem;
     align-items: start;
     height: auto;
+    max-height: 40vh;
 `;
 
 const PriceRow = styled.div`
