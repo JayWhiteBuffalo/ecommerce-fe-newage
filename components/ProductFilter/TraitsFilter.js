@@ -75,7 +75,7 @@ export default function TraitsFilter(){
         </SectionHead>
 
             {isActive && traitList.map(t => 
-                <Item>
+                <Item key={t}>
                 <input type="checkbox" value={t} onClick={(e)=>handleChange(e)}/>
                 <label>{t}</label>
                 </Item>

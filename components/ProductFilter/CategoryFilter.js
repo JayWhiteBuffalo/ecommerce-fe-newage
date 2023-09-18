@@ -55,7 +55,7 @@ export default function CategoryFilter(){
         </SectionHead>
 
             {isActive && categories.map((cat) => (
-                <Item>
+                <Item key={cat._id}>
                 <input type="checkbox" value={cat._id} onClick={(e)=>handleChange(e)}/>
                 <label>{cat.name}</label>
                 </Item>
