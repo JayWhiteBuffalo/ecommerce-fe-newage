@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import logo from "../public/favicon.png";
+import Link from "next/link";
 
 export default function Footer(){
 
@@ -101,17 +102,17 @@ const FooterSection = styled.section`
         <footer id="footer">
         <div class="container">
             <div class="left-section">
-                <a class="logo" href="/index.html"><img loading="lazy" decoding="async" src={logo.src} alt="logo" width="264" height="180"/></a>
+                <Link class="logo" href="/index.html"><img loading="lazy" decoding="async" src={logo.src} alt="logo" width="264" height="180"/></Link>
             </div>
             <div class="right-section">
                 <div class="lists">
                     <ul>
                         <li><h2>Information</h2></li>
-                        <li><a href="/index.html">Home</a></li>
-                        <li><a href="/about.html">About Us</a></li>
-                        <li><a href="/projects.html">Projects</a></li>
-                        <li><a href="/testimonials.html">Reviews</a></li>
-                        <li><a href="/contact.html">Contact</a></li>
+                        <li><Link href="/index.html">Home</Link></li>
+                        <li><Link href="/Linkbout.html">About Us</Link></li>
+                        <li><Link href="/projects.html">Projects</Link></li>
+                        <li><Link href="/testimonials.html">Reviews</Link></li>
+                        <li><Link href="/contact.html">Contact</Link></li>
                     </ul>
                     <ul>
                         <li><h2>Services</h2></li>
@@ -122,9 +123,9 @@ const FooterSection = styled.section`
                     </ul>
                     <ul>
                         <li><h2>Contact</h2></li>
-                        <li><a href="/contact.html">First Address Line<br/>Denver CO 80206</a></li>
-                        <li><a href="tel:555-779-4407">T: (555) 779-4407</a></li>
-                        <li><a href="mailto:email@email.com">Click to Email</a></li>
+                        <li><Link href="/contact.html">First Address Line<br/>Denver CO 80206</Link></li>
+                        <li><Link href="tel:555-779-4407">T: (555) 779-4407</Link></li>
+                        <li><Link href="mailto:email@email.com">Click to Email</Link></li>
                     </ul>
                 </div>
             </div>
@@ -132,7 +133,7 @@ const FooterSection = styled.section`
 
         <div class="credit">
             <span>Designed and Hand Coded by</span>
-            <a href="" target="_blank" rel="noopener"> B-Lush Digital Studio</a>
+            <Link href="" target="_blank" rel="noopener"> B-Lush Digital Studio</Link>
             <span class="copyright"> Copyright 2023 - Present</span></div>
     </footer>
     </FooterSection>
