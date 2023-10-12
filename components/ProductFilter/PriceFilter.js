@@ -45,7 +45,7 @@ letter-spacing: 3px;
 }
 `
 
-export default function PriceFilter () {
+export default function PriceFilter ({ onToggle, setX, priceParams, setPriceParams }) {
 
     useEffect(()=>{
         let params = get_price_params(products);
@@ -58,7 +58,7 @@ export default function PriceFilter () {
     const {filterProducts, filterCategories, clearFilter, filterByPrice, products, filtered } = productContext;
     const [isActive, setIsActive] = useState(false);
     const [price, setPrice] = useState([]);
-    const [priceParams, setPriceParams] = useState([])
+  
 
      const min = priceParams[0];
      const max = priceParams[1];
@@ -69,8 +69,10 @@ export default function PriceFilter () {
 
         let value=[format_price(newValue[0]), format_price(newValue[1])]
         setPrice(value);
-        filterByPrice(newValue);
-    }
+        setX(prevState => ({...prevState, priceRange: newValue}))
+        // filterByPrice(newValue);
+        
+    };
 
     return(
         <>

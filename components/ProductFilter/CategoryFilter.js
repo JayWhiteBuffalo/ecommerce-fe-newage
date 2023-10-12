@@ -26,26 +26,31 @@ padding: .2rem 0rem;
 margin: .1rem;
 `
 
-export default function CategoryFilter(){
+export default function CategoryFilter({ onToggle, setX }){
 
     const productContext = useContext(ProductContext);
     const {categories, filterCategories, filterProducts, clearFilter } = productContext;
     const [isActive, setIsActive] = useState(false);
+    //Array of Product IDs
     const [selectedCategories, setSelectedCategories] = useState([]);
 
         const handleChange = (e) => {
+            //FilteredArray Returns true(1) if currentTarget Id matches a Id in the Selected Category array
         let filteredArray = selectedCategories.includes(e.currentTarget.value);
+            //If no categories have been selected, push current value to selectedCategories arr
         if(selectedCategories.length <= 0){
             selectedCategories.push(e.currentTarget.value)
         }  
         else if(filteredArray === false){
             selectedCategories.push(e.currentTarget.value) 
         } else {
+            //Remove Selected category
             let index = selectedCategories.indexOf(e.currentTarget.value)
             selectedCategories.splice(index,1)
         }
-        // console.log(selectedCategories)
-        filterCategories(selectedCategories)
+        setX(prevState => ({...prevState, categories: selectedCategories}))
+        // filterCategories(selectedCategories); //Passing Selected Categories through the filter
+        // onToggle(filterCategories); // Notify the ProductFilter component
     }
 
     return(

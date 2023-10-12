@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import ProductContext from "@/context/ProductContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CategoryFilter from "./CategoryFilter";
 import PriceFilter from "./PriceFilter";
 import TraitsFilter from "./TraitsFilter";
+import { format_price } from "@/utils/helpers";
 
 const Aside = styled.aside`
 width: auto;
@@ -54,7 +55,32 @@ margin: .5rem;
 export default function ProductFilter () {
 
     const productContext = useContext(ProductContext);
-    const {filterProducts, filterCategories, clearFilter } = productContext;
+    const {filterProducts, searchProducts, filterCategories, clearFilter } = productContext;
+    const [priceParams, setPriceParams] = useState([])
+    const [x, setX] = useState({ 
+         categories: [],
+        priceRange: [],
+        traits: []});
+
+    // const applyFilters = () => {
+        // const filteredProducts = products.filter(product => {
+        //     return activeFilters.every(filterFn => filterFn(product));
+        // });
+        // filterProducts(filteredProducts);
+
+
+
+        
+    // };
+
+    useEffect(()=>{
+        filterProducts(x);
+        console.log(priceParams)
+    },[x, setX]);
+
+    const toggleFilter = (filterFn) => {
+        console.log(x)
+    };
 
 
     return(
@@ -62,13 +88,13 @@ export default function ProductFilter () {
                     <Aside>
                 <div>
                     <DropdownSection >
-                        <CategoryFilter />
+                        <CategoryFilter onToggle={toggleFilter} setX={setX}/>
                     </DropdownSection>
                     <DropdownSection >           
-                        <PriceFilter />
+                        <PriceFilter onToggle={toggleFilter} setX={setX} priceParams={priceParams} setPriceParams={setPriceParams} />
                     </DropdownSection>
                     <DropdownSection>
-                        <TraitsFilter/>
+                        <TraitsFilter onToggle={toggleFilter} setX={setX}/>
                     </DropdownSection>
                 </div>
             </Aside>

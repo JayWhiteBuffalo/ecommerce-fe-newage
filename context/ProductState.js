@@ -7,7 +7,8 @@ import {
         FILTER_CATEGORIES,
         FILTER_BY_PRICE,
         FILTER_BY_TRAIT,
-        SORT_PRODUCTS
+        SORT_PRODUCTS,
+        FILTER_PRODUCTS
 } from './types';
 import { mongooseConnect } from "@/lib/mongoose"
 
@@ -27,9 +28,13 @@ const [state, dispatch] = useReducer(ProductReducer, initialState)
 const [loadedProducts, setLoadedProducts] = useState(initialState.products);
 
 //Filter Products
-const filterProducts = (text) => {
+const searchProducts = (text) => {
     dispatch({ type: SEARCH_PRODUCTS, payload: text});
 };
+
+const filterProducts = (params) => {
+    dispatch({ type: FILTER_PRODUCTS, payload: params});
+}
 
 const filterCategories = (id) => {
     dispatch({type: FILTER_CATEGORIES, payload: id})
@@ -69,12 +74,13 @@ return(
             products:state.products,
             categories: state.categories,
             filtered: state.filtered,
-            filterProducts,
+            searchProducts,
             filterCategories,
             clearFilter,
             setLoadedProducts,
             filterByPrice,
             filterByTrait,
+            filterProducts,
             sortProducts,
             loadedProducts,
         }}
@@ -87,16 +93,16 @@ return(
 export default ProductState;
 
 
-export async function getServerSideProps() {
-    await mongooseConnect();
-    const products= await Product.find({}, null, {sort:{'_id':-1}});
-    const categories = await Category.find({}, null, {sort: {'_id':-1}});
-    return {
-        props:{
-            products:{
-                products:JSON.parse(JSON.stringify(products)),
-            },
-            categories: JSON.parse(JSON.stringify(categories))
-        }
-    };
-}
+// export async function getServerSideProps() {
+//     await mongooseConnect();
+//     const products= await Product.find({}, null, {sort:{'_id':-1}});
+//     const categories = await Category.find({}, null, {sort: {'_id':-1}});
+//     return {
+//         props:{
+//             products:{
+//                 products:JSON.parse(JSON.stringify(products)),
+//             },
+//             categories: JSON.parse(JSON.stringify(categories))
+//         }
+//     };
+// }

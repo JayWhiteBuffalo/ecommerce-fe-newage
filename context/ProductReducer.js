@@ -5,6 +5,7 @@ import {
     FILTER_BY_PRICE,
     FILTER_BY_TRAIT,
     SORT_PRODUCTS,
+    FILTER_PRODUCTS,
   } from './types';
 
   const ProductReducer = (state, action) => {
@@ -23,7 +24,6 @@ import {
               }
 
           case FILTER_CATEGORIES:
-            console.log(state)
             if((state.products.filter(product => (action.payload).includes(product.category)).length <= 0)){
                 return{
                     ...state,
@@ -36,51 +36,17 @@ import {
                     }
             }
 
-            case FILTER_BY_PRICE:
-                let products = state.products
-                let params = action.payload
-               
-                if(state.filtered === null || state.filtered.length === 0){
-                    let result = [];
-                    for (let i = 0; i < products.length; i++) {
-                    if(products[i].price >= params[0] && products[i].price <= params[1]){
-                    result.push(products[i])
-                        }   
-                    } 
-                    return{
-                        ...state,
-                        filtered: result
-                    }
-                    
-                }
-                if(state.filtered != null && state.filtered.length > 0){
-                    let result = [];
-                    // let orderedProducts = filtered.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-                    if(state.filtered[0].price !== params[0] || state.filtered[state.filtered.length-1].price !== params[1]){
-                        for (let i = 0; i < products.length; i++) {
-                            if(products[i].price >= params[0] && products[i].price <= params[1]){
-                            result.push(products[i])
-                                }   
-                            } 
-                    }
-                    return{
-                        ...state,
-                        filtered: result
-                    }
-                 }
-                  else if 
-                    // let orderedProducts = filtered.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-                    (state.filtered.length === 0 && state.products[0].price === params[0] && state.products[state.products.length-1].price === params[1]){
-                    return{
-                        ...state,
-                        filtered: state.products
-                    }
-                 }
-
+            // case FILTER_BY_PRICE:
+            //     let products = state.products
+            //     const [minPrice, maxPrice] = action.payload;
+            //     const filteredByPrice = state.products.filter(product => product.price >= minPrice && product.price <= maxPrice);
+            //     return {
+            //         ...state,
+            //         filtered: filteredByPrice
+            //     }
 
           case FILTER_BY_TRAIT:
             let result = [];
-            console.log(action)
             state.products.map((p, i) =>{
                 if(p.properties !== undefined && p.properties.primary !== undefined && p.properties.secondary !== undefined && p.properties.third !== undefined){
                     if((action.payload).includes(p.properties.primary.trim())){
@@ -105,6 +71,55 @@ import {
                     filtered: result
                 }
             }
+
+
+
+            case FILTER_PRODUCTS:
+    const { categories, priceRange, traits } = action.payload;
+   
+
+    // Validate price range input
+    // const [minPrice, maxPrice] = priceRange;
+    // const validPriceRange = priceRange && priceRange.length === 2 &&
+    //     !isNaN(priceRange[0]) && !isNaN(priceRange[1]);
+
+    // if (!validPriceRange) {
+    //     // Handle invalid price range input
+    //     return state;
+    // }
+
+    // Apply filters
+    let filteredProducts = state.products;
+
+    // Filter by categories
+    console.log(categories)
+    if (categories && categories.length > 0) {
+        filteredProducts = filteredProducts.filter(product => categories.includes(product.category));
+        console.log(filteredProducts)
+    }
+
+    // Filter by price range
+    
+    // filteredProducts = filteredProducts.filter(product => product.price >= minPrice && product.price <= maxPrice);
+
+    // Filter by traits
+    if (traits && traits.length > 0) {
+        filteredProducts = filteredProducts.filter(product => {
+            return traits.every(trait => {
+                return (
+                    product.properties && 
+                    ((product.properties.primary !== undefined && product.properties.primary.includes(trait)) ||
+                    (product.properties.secondary !== undefined &&  product.properties.secondary.includes(trait)) ||
+                    (product.properties.third !== undefined &&  product.properties.third.includes(trait)))
+                );
+            });
+        });
+    }
+
+    return {
+        ...state,
+        filtered: filteredProducts.length > 0 ? filteredProducts : state.products // Handle empty filtered products
+    };
             
           
           case SORT_PRODUCTS:
