@@ -27,13 +27,12 @@ padding: .2rem 0rem;
 margin: .1rem;
 `
 
-export default function TraitsFilter({ onToggle, setX }){
+export default function TraitsFilter({ setX }){
 
     const productContext = useContext(ProductContext);
-    const {filterByTrait, clearFilter, products, filtered } = productContext;
+    const {clearFilter, products, filtered } = productContext;
     const [isActive, setIsActive] = useState(false);
     const [selectedTraits, setSelectedTraits] = useState([]);
-    // 
     
         const handleChange = (e) => {
         let filteredArray = selectedTraits.includes(e.currentTarget.value);
@@ -47,7 +46,6 @@ export default function TraitsFilter({ onToggle, setX }){
             selectedTraits.splice(index,1)
         }
         setX(prevState => ({...prevState, traits: selectedTraits}))
-        //  filterByTrait(selectedTraits)
     }
 
     function getAllTraits(){

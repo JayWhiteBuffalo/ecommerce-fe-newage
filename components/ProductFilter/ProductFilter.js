@@ -55,46 +55,28 @@ margin: .5rem;
 export default function ProductFilter () {
 
     const productContext = useContext(ProductContext);
-    const {filterProducts, searchProducts, filterCategories, clearFilter } = productContext;
-    const [priceParams, setPriceParams] = useState([])
+    const {filterProducts, searchProducts, clearFilter } = productContext;
     const [x, setX] = useState({ 
          categories: [],
         priceRange: [],
         traits: []});
 
-    // const applyFilters = () => {
-        // const filteredProducts = products.filter(product => {
-        //     return activeFilters.every(filterFn => filterFn(product));
-        // });
-        // filterProducts(filteredProducts);
-
-
-
-        
-    // };
-
     useEffect(()=>{
         filterProducts(x);
-        console.log(priceParams)
-    },[x, setX]);
-
-    const toggleFilter = (filterFn) => {
-        console.log(x)
-    };
-
+    },[x,]);
 
     return(
 
                     <Aside>
                 <div>
                     <DropdownSection >
-                        <CategoryFilter onToggle={toggleFilter} setX={setX}/>
+                        <CategoryFilter setX={setX}/>
                     </DropdownSection>
                     <DropdownSection >           
-                        <PriceFilter onToggle={toggleFilter} setX={setX} priceParams={priceParams} setPriceParams={setPriceParams} />
+                        <PriceFilter setX={setX} />
                     </DropdownSection>
                     <DropdownSection>
-                        <TraitsFilter onToggle={toggleFilter} setX={setX}/>
+                        <TraitsFilter setX={setX}/>
                     </DropdownSection>
                 </div>
             </Aside>

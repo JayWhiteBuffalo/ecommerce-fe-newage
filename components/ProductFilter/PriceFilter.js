@@ -45,33 +45,33 @@ letter-spacing: 3px;
 }
 `
 
-export default function PriceFilter ({ onToggle, setX, priceParams, setPriceParams }) {
+export default function PriceFilter ({ setX }) {
+
+    const productContext = useContext(ProductContext);
+    const {filterProducts, clearFilter, products, filtered } = productContext;
+    const [isActive, setIsActive] = useState(false);
+    const [price, setPrice] = useState([]);
+    const [priceParams, setPriceParams] = useState([])
 
     useEffect(()=>{
         let params = get_price_params(products);
         let min = format_price(params[0])
         let max = format_price(params[1])
         setPriceParams([min,max])
+        setX(prevState => ({...prevState, priceRange: [min,max]}))
      },[]);
 
-    const productContext = useContext(ProductContext);
-    const {filterProducts, filterCategories, clearFilter, filterByPrice, products, filtered } = productContext;
-    const [isActive, setIsActive] = useState(false);
-    const [price, setPrice] = useState([]);
+
   
 
      const min = priceParams[0];
      const max = priceParams[1];
- 
 
 
     const handlePriceChange = (newValue) => {
-
         let value=[format_price(newValue[0]), format_price(newValue[1])]
         setPrice(value);
-        setX(prevState => ({...prevState, priceRange: newValue}))
-        // filterByPrice(newValue);
-        
+        setX(prevState => ({...prevState, priceRange: newValue}))    
     };
 
     return(
@@ -90,8 +90,6 @@ export default function PriceFilter ({ onToggle, setX, priceParams, setPricePara
                 min={Number(priceParams[0])}
                 max={Number(priceParams[1])}
                 step={.01}
-                // value={price}
-                // onChange={handlePriceChange}
                 allowCross={false}
                 defaultValue={priceParams}
                 onAfterChange={(e)=>handlePriceChange(e)}

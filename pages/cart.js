@@ -23,18 +23,18 @@ const ProductInfoCell = styled.td`
 `;
 
 const ProductImageBox = styled.div`
-    width: 100px;
-    hieght: 100px;
-    padding: 10px;
+    width: 110px;
+    height: 110px;
+    padding: 10x;
     background-color: #f0f0f0;
-    border-radius: 10px;
+    border-radius: 3px;
     border: 1px solid rgba(0,0,0,.1);
     display: flex;
     justify-content: center;
     align-items: center;
     img{
-        max-height: 80px;
-        max-width:80px;
+        max-height: 100px;
+        max-width:100px;
     }
 `;
 
@@ -46,6 +46,13 @@ const CityHolder = styled.div`
     display:flex;
     gap: 5px;
 `;
+
+const TRow = styled.tr`
+    display: flex;
+    align-items: center;
+    
+
+`
 
 
 export default function CartPage() {
@@ -151,11 +158,13 @@ export default function CartPage() {
                         </ProductImageBox>
                     </ProductInfoCell>
                     <td>
-                        <Button onClick={() => minusQuantity(product._id)}>-</Button>
+                    <TRow>
+                        <Button checkout onClick={() => minusQuantity(product._id)}>-</Button>
                         <QuantityLabel>
                         {cartProducts.filter(id => id === product._id).length}
                         </QuantityLabel>
-                        <Button onClick={() => addQuantity(product._id)}>+</Button>
+                        <Button checkout onClick={() => addQuantity(product._id)}>+</Button>
+                    </TRow>
                     </td>
                     <td>
                      ${format_price(cartProducts.filter(id => id === product._id).length * (product.price))}

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export const CartContext = createContext({});
 
 export function  CartContextProvider({children}) {
-    const ls= typeof window !== 'undefined' ?  window.localStorage : null;
+    const ls= typeof window !== "undefined" ?  window.localStorage : null;
     const defaultProducts = ls ? JSON.parse(ls?.getItem('cart')) : [];
     const [cartProducts, setCartProducts] = useState(defaultProducts || []);
 
@@ -19,9 +19,19 @@ export function  CartContextProvider({children}) {
             setCartProducts(JSON.parse(ls.getItem('cart')));
         }
     },[ls]);
-    function addProduct(productId) {
+    function addProduct(productId, count) {
+        if(count > 1 && count != 0){
+            for (let i = 0; i < count -1; i++) {
+                setCartProducts(prev => [...prev, productId])
+            }
+        } 
+        if(count === 0){
+            return;
+        } else {
         setCartProducts(prev => [...prev, productId]);
+        }
     }
+
     function removeProduct(productId){
         setCartProducts(prev =>{
             const idPosition = prev.indexOf(productId);

@@ -99,22 +99,7 @@ export default function ProductSearch() {
             clearFilter();
         }
     }
-
-//     function findParams(){
-//         let x = products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-//         let y = [x[0].price, x[x.length-1].price]
-//         return y
-//      }
  
-//      let params = findParams();
-//      let min = format_price(params[0])
-//      let max = format_price(params[1])
-
-//     const[filters, setFilters] = useState([])
-//     const[stage, setStage] = useState([])
-//     const [price, setPrice] = useState([min, max]);
-
-//     let list = filters;
 
 //     function updateFilter(e){
 //         //price filter function
@@ -124,32 +109,6 @@ export default function ProductSearch() {
 //         getFilteredProducts();
 //     }
 
-
-//     function filterCategories(e){
-//         let filteredArray = list.includes(e.currentTarget.value);
-//         if(list.length <= 0){
-//             list.push(e.currentTarget.value)
-//             return
-//         }  
-//         if(filteredArray === false){
-//             list.push(e.currentTarget.value)
-//             return
-//         } else {
-//             let index = list.indexOf(e.currentTarget.value)
-//             list.splice(index,1)
-//         }
-//     }
-
-
-
-//     function filterPrice(){
-//         result = [];
-//         for (let i = 0; i < stage.length; i++) {
-//             if(stage[i].price >= price[0] && stage[i].price <= price[1]){
-//                 result.push(stage[i])
-//             }   
-//         }
-//         console.log(result)
 
 //     }
 

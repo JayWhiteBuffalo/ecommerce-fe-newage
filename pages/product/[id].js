@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Button from "@/components/Button";
 import Box from "@/components/Box";
 import { CartContext } from "@/context/CartContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/modals/Product";
 import { Category } from "@/modals/Category";
@@ -14,7 +14,7 @@ import CartIcon from "@/components/icons/CartIcon";
 
 const ColWrapper = styled.div`
     display:grid;
-    grid-template-columns: .8fr 1.2fr;
+    grid-template-columns: 1.5fr 1fr;
     gap: 40px;
     margin-top: 40px;
 `;
@@ -22,35 +22,99 @@ const ColWrapper = styled.div`
 const PriceRow = styled.div`
     display:flex;
     gap:20px;
-    align-items:center;
+    align-items:start;
+    flex-direction: column;
 `;
+
+const DescriptionCont = styled.div`
+    margin-top: 2rem;
+    border-top: 1px solid black;
+`
 
 const Price = styled.span`
     font-size: 1.75rem;
     `;
 
+const QuantityLabel = styled.span`
+    padding: 0 10px;
+`;
+
+const Row = styled.div`
+    display: flex;
+    gap: 1.5rem;
+`;
+
+const Counter = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const DetailsCont = styled.div`
+    border: 1px solid black;
+    min-height: 300px;
+    max-height: auto;
+    padding: 0rem 2rem;
+    margin-top: 30px;
+`;
+
 export default function ProductPage({product, categories}) {
+
     const {addProduct} = useContext(CartContext);
+
+    const truncate = (input) =>
+        input.length > 700 ? `${input.substring(0, 700)}...` : input;
+
+        const [showTruncate, setShowTruncate] = useState(true);
+        const [count, setCount] = useState(1);
+
+        const addCount = () => {
+            setCount(prevState => (prevState + 1));
+        };
+
+        const minusCount = () => {
+            if(count === 0){
+                return
+            } else {
+            setCount(prevState => (prevState-1));
+            }
+        };
+
     return(
         <>
         <Header categories={categories}/>
+        
         <Center>
             <ColWrapper>
                 <Box>
                     <ProductImages images={product.images}/>
                 </Box>
-            <div>
+            <DetailsCont>
             <Title>{product.title}</Title>
-            <p>{product.description}</p>
             <PriceRow>
                 <div>
-                    <Price>{product.price}</Price>
+                    <Price>${product.price}</Price>
                 </div>
-                <div>
-            <Button primary onClick={()=> {addProduct(product._id)}}><CartIcon/>Add to Cart</Button>
-            </div>
+                <Row>
+                    <Counter>
+                        <Button checkout onClick={() => minusCount()}>-</Button>
+                            <QuantityLabel>{count}</QuantityLabel>
+                        <Button checkout onClick={() => addCount()}>+</Button>
+                    </Counter>
+                    <div>
+                    <Button full onClick={()=> {addProduct(product._id, count)}}><CartIcon/>Add to Cart</Button>
+                    </div>
+                </Row>
             </PriceRow>
-            </div>
+            <DescriptionCont>
+            {product.description.length > 700 ? (<>
+            <p>{showTruncate ? truncate(product.description) : product.description}</p>
+            <button onClick={() => setShowTruncate(!showTruncate)}> {showTruncate ? `Show more` : `Show Less`}</button>
+            </>
+            ) : <p>{product.description}</p>
+            }
+            </DescriptionCont>
+
+            </DetailsCont>
             </ColWrapper>
         </Center>
         </>

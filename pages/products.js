@@ -14,6 +14,7 @@ import ProductSearch from "@/components/ProductFilter/ProductSearch"
 import ProductSort from "@/components/ProductFilter/ProductFilter"
 import ProductFilter from "@/components/ProductFilter/ProductFilter"
 import PriceFilter from "@/components/ProductFilter/PriceFilter"
+import banner from "../public/images/banner2.jpg"
 
 
 const SortCont = styled.aside`
@@ -26,13 +27,12 @@ const SortCont = styled.aside`
 const SectionWrap = styled.div`
     display: flex;
     flex-direction: column;
-    gap:2rem;
     padding: 2rem 0rem;
 `;
 const SectionHead = styled.div`
     display: flex;
     width: 100%;
-    padding: 0rem 2rem;
+    padding: 0rem 3rem;
     justify-content: space-between;
 `;
 
@@ -44,6 +44,32 @@ const SectionMain = styled.section`
 const HeadCont = styled.div`
     display:flex;
     align-items: center;
+`;
+
+const Banner = styled.div`
+width: 100%;
+height: 300px;
+background-image: url(${banner.src});
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+`;
+
+const TextBox = styled.div`
+position: absolute;
+width: 100%;
+height: 300px;
+`
+
+const BannerText = styled.h2`
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 75%;
+color: white;
+font-size: 3rem;
+letter-spacing: 2px;
 `
 
 export default function ProductsPage() {
@@ -56,6 +82,11 @@ export default function ProductsPage() {
     return(
         <>
         <Header />
+        <Banner>
+            <TextBox>
+            <BannerText>Shop Products</BannerText>
+            </TextBox>
+        </Banner>
             <Center>
                 <SectionWrap>
                     <Center>
@@ -63,7 +94,6 @@ export default function ProductsPage() {
                             <Title> All Products</Title>
                             <HeadCont>
                             <SortBox/>
-                            <ProductSearch/>
                             </HeadCont>
                         </SectionHead>
                     </Center>

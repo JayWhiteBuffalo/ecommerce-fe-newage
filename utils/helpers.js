@@ -10,6 +10,7 @@ module.exports = {
         let y = [x[0].price, x[x.length-1].price]
         return y
     },
+    
 
     getServerSideProps: async function() {
         const featuredProductId = '64dfac49918f50837ef604cc';

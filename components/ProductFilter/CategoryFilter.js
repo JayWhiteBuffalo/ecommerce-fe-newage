@@ -26,11 +26,11 @@ padding: .2rem 0rem;
 margin: .1rem;
 `
 
-export default function CategoryFilter({ onToggle, setX }){
+export default function CategoryFilter({ setX }){
 
     const productContext = useContext(ProductContext);
-    const {categories, filterCategories, filterProducts, clearFilter } = productContext;
-    const [isActive, setIsActive] = useState(false);
+    const {categories, filterProducts, clearFilter } = productContext;
+    const [isActive, setIsActive] = useState(true);
     //Array of Product IDs
     const [selectedCategories, setSelectedCategories] = useState([]);
 
@@ -49,8 +49,6 @@ export default function CategoryFilter({ onToggle, setX }){
             selectedCategories.splice(index,1)
         }
         setX(prevState => ({...prevState, categories: selectedCategories}))
-        // filterCategories(selectedCategories); //Passing Selected Categories through the filter
-        // onToggle(filterCategories); // Notify the ProductFilter component
     }
 
     return(

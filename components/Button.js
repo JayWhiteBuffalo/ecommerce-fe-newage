@@ -76,6 +76,41 @@ ${props => props.itemCard && css`
         color: white;
     }
 `}
+${props => props.checkout && css`
+    width: 35px;
+    height: 35px;
+    position: relative;
+    background-color: white;
+    opacity: 100%;
+    border: 1px solid black;
+    color:black;
+    border-radius: 0;
+    padding: .5rem .25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .65rem;
+    letter-spacing: .1rem;
+    &:hover{
+        background-color: black;
+        color: white;
+    }
+`}
+${props => props.full &&  css`
+    width: 100%;
+    background-color: #89d961;
+    color:white;
+    border-radius: 0;
+    padding: .5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    letter-spacing: .1rem;
+    &:hover{
+        scale: 105%;
+    }
+    `}
 ${props => props.size === 'l' && css`
     font-size: 1.2rem;
     padding: 18px 20px;
