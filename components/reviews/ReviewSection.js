@@ -4,7 +4,7 @@ import {Swiper, SwiperSlide } from 'swiper/react';
 import { useState, useRef } from 'react';
 import ReviewSlide from './ReviewSlide.js';
 import styled from 'styled-components';
-import { gold } from '@/lib/colors.js';
+import { gold, secondary } from '@/lib/colors.js';
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -16,7 +16,7 @@ width: 100%;
 height: 100%;
 background-color: white;
 padding: 0rem 2.75rem;
-border: 2px solid  #89d961;
+border-top: 2px solid  ${secondary};
 `;
 
 const SectionCont = styled.div`

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { FaStar } from "react-icons/fa";
 import { gold } from "@/lib/colors";
 
 const ReviewSlideCont = styled.div`

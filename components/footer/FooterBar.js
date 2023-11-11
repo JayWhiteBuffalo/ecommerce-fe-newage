@@ -35,6 +35,7 @@ div p{
 button{
     background-color: transparent;
     border:2px solid white;
+    border-radius: 6px/5px;
     color:white;
     font-weight: 700;
     letter-spacing: .25rem;
