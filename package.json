@@ -19,8 +19,10 @@
     "react": "18.2.0",
     "react-animations": "^1.0.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.11.0",
     "stripe": "^12.6.0",
     "styled-components": "^5.3.9",
-    "styled-tools": "^1.7.2"
+    "styled-tools": "^1.7.2",
+    "swiper": "^11.0.4"
   }
 }

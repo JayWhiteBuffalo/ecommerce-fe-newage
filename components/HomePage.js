@@ -9,6 +9,8 @@ import ad from "../public/images/plantbannerad.jpg"
 import BelowBanner from "./BelowBanner";
 import HotDeal from "./HotDeal";
 import ProductFilter from "./ProductFilter/ProductFilter";
+import ReviewSection from "./reviews/ReviewSection";
+import FooterBar from "./footer/FooterBar";
 
 const CatMenu = styled.aside`
 display: flex;
@@ -52,6 +54,8 @@ export default function HomePage () {
             <HeroCont>
             <NewProducts/>
             </HeroCont>
+            <ReviewSection/>
+            <FooterBar/>
         </>
     )
 }

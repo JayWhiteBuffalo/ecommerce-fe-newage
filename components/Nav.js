@@ -67,8 +67,12 @@ grid-template-columns: auto auto auto;
 width: 100%;
 `;
 
+const NavDiv = styled.div`
+border-right: 1px solid #ccc;
+`;
+
 const NavBar = styled.div`
-width:100%;
+width:100vw;
 height:50px;
 display: flex;
 justify-items: space-between;
@@ -89,19 +93,19 @@ return(
     <StyledNav>
         <NavBar>
             <NavGrid>
-                <div>
+                <NavDiv>
                     <NavLink  href={'/'}><h4>HOME</h4></NavLink>
                     <NavLink href={'/products'}><h4>PRODUCTS</h4></NavLink>
-                    <NavLink href={'/services'}><h4>SERVICES</h4></NavLink>
+                    <NavLink href={'/collections'}><h4>COLLECTIONS</h4></NavLink>
                     <NavLink href={'/support'}><h4>SUPPORT</h4></NavLink>
                     <NavLink href={'/contact'}><h4>CONTACT</h4></NavLink>
                     <NavLink href={'/account'}><h4>ACCOUNT</h4></NavLink>
                     {/* <NavLink href={'/cart'}><CartIcon/> ({cartProducts.length})</NavLink> */}
-                </div>
+                    <SearchCont>
+                        <SeachBox setSearchParams={setSearchParams} searchParams={searchParams}/>
+                    </SearchCont>
+                </NavDiv>
             </NavGrid>
-            <SearchCont>
-                <SeachBox setSearchParams={setSearchParams} searchParams={searchParams}/>
-            </SearchCont>
         </NavBar>
     </StyledNav>
 )

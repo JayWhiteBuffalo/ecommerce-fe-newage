@@ -29,13 +29,14 @@ background-color: transparent;
 img{
 position: relative;
 width: 100%;
+border:none;
 }
 `;
 
 const SearchCont = styled.div`
 background-color: white;
-border-radius: 5px;
 height:20px;
+border: none;
 `
 export default function SeachBox({setSearchParams, ...rest}) {
 
