@@ -99,7 +99,7 @@ const ItemButtons = styled.div`
     gap: .5rem;
     background-color: white;
     padding: .5rem .5rem;
-    opacity: 70%;
+    opacity: 80%;
     animation: .175s ${fadeIn} ease-out;
 `;
     

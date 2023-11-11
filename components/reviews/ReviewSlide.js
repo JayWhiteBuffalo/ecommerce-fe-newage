@@ -57,7 +57,7 @@ const ReviewSlide = () => {
         <ReviewSlideCont>
         <SlideInnerCont>
           <ReviewTextCont>
-            <p>Our Pangea contact person was Jeff. Jeff did a great job communicating to setup the process of getting a new roof, understanding insurance information, and the actual work that would be done to our home. For top quality work and great customer service, Pangea is recommended. This is the second time I have worked with Pangea to have a new roof put on a home.</p>
+            <p>Incredible store! I trust everything they sell to be extremely high quality, 100% authentic, and reasonably priced! The customer service staff are extremely knowledgeable and kind. Wonderful gem in MO. I make sure to visit everytime I need a new item. They're selection is massive and I always find something special that fits my needs perfectly.</p>
           </ReviewTextCont>
         </SlideInnerCont>
       </ReviewSlideCont>
